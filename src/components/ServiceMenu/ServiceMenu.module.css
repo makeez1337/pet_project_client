@@ -1,0 +1,43 @@
+.menu_wrap {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 10px;
+}
+
+.left_service {
+    background-image: url('/src/images/change_phone_service.jpg');
+    width: 480px;
+    height: 220px;
+}
+
+.middle_service {
+    background-image: url('/src/images/service_phone_center.jpg');
+    width: 480px;
+    height: 220px;
+}
+
+.right_service {
+    background-image: url('/src/images/discount_phones.jpg');
+    width: 480px;
+    height: 220px;
+}
+
+.left_service:hover,
+.middle_service:hover,
+.right_service:hover {
+    cursor: pointer;
+}
+
+.service_describe {
+    padding-top: 170px;
+    padding-left: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    width: 100%;
+}
+
+.text_wrap:hover {
+    color: deepskyblue;
+}
