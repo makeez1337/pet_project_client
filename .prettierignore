@@ -1,6 +1,7 @@
 # generated files
 **/generated/**/*.*
 package-lock.json
+*.css
 
 
 # docker files
