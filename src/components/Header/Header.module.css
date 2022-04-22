@@ -1,31 +1,31 @@
 .header_wrap {
-  display: flex;
-  background-color: #22242a;
-  justify-content: space-between;
-  padding: 10px;
-  align-items: center;
-  font-family: "Roboto Slab", sans-serif;
+    display: flex;
+    background-color: #22242a;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    font-family: 'Roboto Slab', sans-serif;
 }
 
 .left_side {
-  display: flex;
-  color: #bfbfbf;
-  gap: 50px;
-  padding-left: 55px;
+    display: flex;
+    color: #bfbfbf;
+    gap: 50px;
+    padding-left: 55px;
 }
 
 .right_side {
-  display: flex;
-  color: #bfbfbf;
-  align-items: center;
-  gap: 50px;
-  padding-right: 55px;
+    display: flex;
+    color: #bfbfbf;
+    align-items: center;
+    gap: 50px;
+    padding-right: 55px;
 }
 
 .login_logo {
-  width: 50px;
+    width: 50px;
 }
 
 .shop_bucket {
-  width: 50px;
+    width: 50px;
 }
