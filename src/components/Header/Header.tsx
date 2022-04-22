@@ -17,9 +17,11 @@ const Header: FC = () => {
         <h2>Контакти</h2>
         <div className={css.login_logo}>
           <img src={login_logo} alt="login_logo" />
+          <div>Увійти</div>
         </div>
         <div className={css.shop_bucket}>
           <img src={shop_bucket} alt="shop_bucket" />
+          <div>Корзина</div>
         </div>
       </div>
     </div>
