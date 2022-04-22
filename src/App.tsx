@@ -7,7 +7,7 @@ import IndexPage from './pages/IndexPage/IndexPage';
 const App: FC = () => {
   return (
     <Routes>
-      <Route index element={<IndexPage/>}/>
+      <Route index element={<IndexPage />} />
     </Routes>
   );
 };
