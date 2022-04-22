@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import css from './ServiceMenu.module.css';
 
-const ServiceMenu = () => {
+const ServiceMenu: FC = () => {
   return (
     <div className={css.menu_wrap}>
       <div className={css.left_service}>

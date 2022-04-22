@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import Header from '../../components/Header/Header';
 import ServiceMenu from '../../components/ServiceMenu/ServiceMenu';
 
-const IndexPage = () => {
+const IndexPage: FC = () => {
   return (
     <div>
       <Header />
