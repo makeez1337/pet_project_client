@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import loginPromptReducer from './slices/loginPromptSlice';
+import authPromptReducer from './slices/authPromptSlice';
 
 export const store = configureStore({
   reducer: {
-    loginPromptReducer,
+    authPromptReducer,
   },
 })
 
