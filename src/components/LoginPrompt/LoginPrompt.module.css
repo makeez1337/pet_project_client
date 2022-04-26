@@ -4,7 +4,7 @@
     justify-content: center;
     width: 500px;
     height: 300px;
-    background-color: silver;
+    background-color: cornflowerblue;
     border-radius: 5px;
     left: 50%;
     position: absolute;
@@ -12,6 +12,39 @@
     top: 50%;
     margin-top: -150px;
     text-align: center;
+    transition: 1.5s;
+}
+
+.content_wrap_closed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    height: 300px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    left: 50%;
+    position: absolute;
+    margin-left: -250px;
+    top: 50%;
+    margin-top: -1000px;
+    text-align: center;
+    transition: 1.5s;
+}
+
+.close_button_wrap {
+    display: flex;
+    justify-content: end;
+    margin-right: 20px;
+}
+
+.close_button_wrap img {
+    width: 35px;
+    height: 35px;
+}
+
+.close_button_wrap img:hover {
+    cursor: pointer;
 }
 
 form {
@@ -50,5 +83,10 @@ form > input {
     width: 50%;
     margin: 20px auto;
 
+}
+
+.bottom_menu {
+    display: flex;
+    justify-content: space-evenly;
 }
 
