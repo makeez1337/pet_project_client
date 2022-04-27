@@ -3,10 +3,7 @@ import React, { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import css from './LoginPrompt.module.css';
 import close_button from '../../images/close_button.png';
-import {
-  openLoginPrompt,
-  openRegistrationPrompt
-} from '../../store/slices/authPromptSlice';
+import { openLoginPrompt, openRegistrationPrompt } from '../../store/slices/authPromptSlice';
 
 const LoginPrompt: FC = () => {
   const { isLoginPromptOnScreen, isRegistrationPromptOnScreen } = useAppSelector(
@@ -25,12 +22,14 @@ const LoginPrompt: FC = () => {
 
   return (
     <div>
-      <div className={isLoginPromptOnScreen ?
-        css.content_wrap :
-        isRegistrationPromptOnScreen ?
-          css.content_wrap_switch :
-          css.content_wrap_closed
-      }>
+      <div
+        className={
+          isLoginPromptOnScreen
+            ? css.content_wrap
+            : isRegistrationPromptOnScreen
+            ? css.content_wrap_switch
+            : css.content_wrap_closed
+        }>
         <div className={css.close_button_wrap}>
           <img src={close_button} alt="close_button" onClick={closeLogin} />
         </div>
