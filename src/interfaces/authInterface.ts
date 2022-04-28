@@ -3,7 +3,7 @@ export interface ILoginCredentials {
   password: string;
 }
 
-export interface ILoginResponse {
+export interface IAuthResponse {
   accessToken: string;
   refreshToken: string;
   user: {
