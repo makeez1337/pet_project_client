@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { useAppDispatch } from '../../hooks/reduxHooks';
-import { openLoginPrompt } from '../../store/slices/authPromptSlice';
+import { openLoginPrompt } from '../../store/slices/authSlice';
 import login_logo from '../../images/login_logo.png';
 import shop_bucket from '../../images/shop_bucket.png';
 import css from './Header.module.css';
