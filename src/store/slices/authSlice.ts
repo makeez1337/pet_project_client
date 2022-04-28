@@ -1,20 +1,27 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { authService } from '../../services/authService';
 import { ILoginCredentials } from '../../interfaces/authInterface';
-import axios from "axios";
+import axios from 'axios';
+import { IUser } from '../../interfaces/userInterface';
 
 export interface authPromptState {
+  user: IUser | null;
+  isAuth: boolean;
+
   isLoginPromptOnScreen: boolean;
   isRegistrationPromptOnScreen: boolean;
 }
 
 const initialState: authPromptState = {
+  user: null,
+  isAuth: false,
+
   isLoginPromptOnScreen: false,
   isRegistrationPromptOnScreen: false
 };
 
 export const loginThunk = createAsyncThunk(
-  'authPromptSlice/login',
+  'authSlice/login',
   async (credentials: ILoginCredentials, { rejectWithValue }) => {
     try {
       const response = await authService.login(credentials);
@@ -33,7 +40,7 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
-export const authPromptSlice = createSlice({
+export const authSlice = createSlice({
   name: 'authPromptSlice',
   initialState,
   reducers: {
@@ -52,6 +59,6 @@ export const authPromptSlice = createSlice({
   }
 });
 
-export const { openLoginPrompt, openRegistrationPrompt, switchToLogin } = authPromptSlice.actions;
+export const { openLoginPrompt, openRegistrationPrompt, switchToLogin } = authSlice.actions;
 
-export default authPromptSlice.reducer;
+export default authSlice.reducer;
