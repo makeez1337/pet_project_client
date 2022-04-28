@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Pagination } from 'swiper';
+import { Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -15,12 +15,11 @@ const DiscountProducts: FC = () => {
       </div>
       <div className={css.slider_wrap}>
         <Swiper
+          autoplay={true}
           slidesPerView={3}
           spaceBetween={30}
-          pagination={{
-            clickable: true
-          }}
-          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          modules={[Pagination, Autoplay]}
           className={css.mySwiper}>
           <SwiperSlide style={{ backgroundColor: 'black' }}>Slide 1</SwiperSlide>
           <SwiperSlide>Slide 2</SwiperSlide>
