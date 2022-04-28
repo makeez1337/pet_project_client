@@ -7,7 +7,7 @@ import { useAppSelector } from '../../hooks/reduxHooks';
 
 const Auth = () => {
   const { isLoginPromptOnScreen, isRegistrationPromptOnScreen } = useAppSelector(
-    (state) => state.authPromptReducer
+    (state) => state.authReducer
   );
   return (
     <div

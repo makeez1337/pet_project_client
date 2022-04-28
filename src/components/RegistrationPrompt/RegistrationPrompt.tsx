@@ -3,14 +3,14 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import close_button from '../../images/close_button.png';
 import css from './RegistrationPrompt.module.css';
-import { switchToLogin } from '../../store/slices/authSlice';
+import { switchToLoginPrompt } from '../../store/slices/authSlice';
 
 const RegistrationPrompt = () => {
-  const { isRegistrationPromptOnScreen } = useAppSelector((state) => state.authPromptReducer);
+  const { isRegistrationPromptOnScreen } = useAppSelector((state) => state.authReducer);
   const dispatch = useAppDispatch();
 
   const switchToLog = () => {
-    dispatch(switchToLogin());
+    dispatch(switchToLoginPrompt());
   };
 
   return (

@@ -3,11 +3,7 @@ import React, { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import css from './LoginPrompt.module.css';
 import close_button from '../../images/close_button.png';
-import {
-  loginThunk,
-  openLoginPrompt,
-  openRegistrationPrompt
-} from '../../store/slices/authSlice';
+import { loginThunk, openLoginPrompt, openRegistrationPrompt } from '../../store/slices/authSlice';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 type FormValues = {
@@ -17,7 +13,7 @@ type FormValues = {
 
 const LoginPrompt: FC = () => {
   const { isLoginPromptOnScreen, isRegistrationPromptOnScreen } = useAppSelector(
-    (state) => state.authPromptReducer
+    (state) => state.authReducer
   );
   const { register, handleSubmit, reset } = useForm<FormValues>();
 
