@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import authPromptReducer from './slices/authPromptSlice';
+import authReducer from './slices/authSlice';
 
 export const store = configureStore({
   reducer: {
-    authPromptReducer,
+    authReducer,
   },
 })
 
