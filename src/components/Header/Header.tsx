@@ -1,16 +1,21 @@
 import React, { FC } from 'react';
 
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { openLoginPrompt } from '../../store/slices/authSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { logOutThunk, openLoginPrompt } from '../../store/slices/authSlice';
 import login_logo from '../../images/login_logo.png';
 import shop_bucket from '../../images/shop_bucket.png';
 import css from './Header.module.css';
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.authReducer);
 
   const openLogin = () => {
     dispatch(openLoginPrompt(true));
+  };
+
+  const logOut = () => {
+    dispatch(logOutThunk());
   };
 
   return (
@@ -25,9 +30,15 @@ const Header: FC = () => {
         <h2>Контакти</h2>
         <div className={css.login_logo}>
           <img src={login_logo} alt="login_logo" />
-          <div className={css.login} onClick={openLogin}>
-            Увійти
-          </div>
+          {!user ? (
+            <div className={css.login} onClick={openLogin}>
+              Увійти
+            </div>
+          ) : (
+            <div className={css.login} onClick={logOut}>
+              Вийти
+            </div>
+          )}
         </div>
         <div className={css.shop_bucket_image}>
           <img src={shop_bucket} alt="shop_bucket" />
