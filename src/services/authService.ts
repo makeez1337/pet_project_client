@@ -7,7 +7,7 @@ export const authService = {
   login: async (credentials: ILoginCredentials): Promise<AxiosResponse<IAuthResponse>> => {
     return axiosService.post(`${Urls.Auth}${Urls.Login}`, credentials);
   },
-  refresh: async (refreshToken: string):Promise<AxiosResponse<IAuthResponse>> => {
-    return axiosService.post(`${Urls.Auth}${Urls.Refresh}`, refreshToken);
+  refresh: async (): Promise<AxiosResponse<IAuthResponse>> => {
+    return axiosService.get(`${Urls.Auth}${Urls.Refresh}`);
   }
 };
