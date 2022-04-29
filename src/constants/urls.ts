@@ -4,7 +4,8 @@ export enum Urls {
   Auth = '/auth',
   Registration = '/registration',
   Login = '/login',
-  Refresh = '/refresh'
+  Refresh = '/refresh',
+  Logout = '/logout'
 }
 
 export default baseURL;
