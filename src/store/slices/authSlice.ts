@@ -25,7 +25,7 @@ export const loginThunk = createAsyncThunk(
   async (credentials: ILoginCredentials, { rejectWithValue }) => {
     try {
       const response = await authService.login(credentials);
-      console.log(response.data);
+      localStorage.setItem('accessToken', response.data.accessToken);
       return response.data;
     } catch (e) {
       if (axios.isAxiosError(e)) {
@@ -40,6 +40,26 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
+export const checkAuthThunk = createAsyncThunk(
+    'authSlice/checkAuthThunk',
+    async (_, {rejectWithValue}) => {
+      try {
+        const response = await authService.refresh();
+        localStorage.setItem('accessToken', response.data.accessToken);
+        return response.data;
+      } catch (e) {
+        if (axios.isAxiosError(e)) {
+          console.log('error message: ', e.response?.data);
+          return e.response?.data;
+        }
+        if (e instanceof Error) {
+          console.log('unexpected error: ', e.message);
+          return e.message;
+        }
+      }
+    }
+);
+
 export const authSlice = createSlice({
   name: 'authPromptSlice',
   initialState,
@@ -52,13 +72,26 @@ export const authSlice = createSlice({
       state.isRegistrationPromptOnScreen = action.payload;
       state.isLoginPromptOnScreen = false;
     },
-    switchToLogin: (state) => {
+    switchToLoginPrompt: (state) => {
       state.isRegistrationPromptOnScreen = false;
       state.isLoginPromptOnScreen = true;
     }
-  }
+  },
+  extraReducers: (builder => {
+    // loginThunk
+    builder.addCase(loginThunk.fulfilled, ((state, action) => {
+      state.isAuth = true;
+      state.user = action.payload.user;
+    }))
+
+    // checkAuthThunk
+    builder.addCase(checkAuthThunk.fulfilled, ((state, action) => {
+      state.isAuth = true;
+      state.user = action.payload.user;
+    }))
+  })
 });
 
-export const { openLoginPrompt, openRegistrationPrompt, switchToLogin } = authSlice.actions;
+export const { openLoginPrompt, openRegistrationPrompt, switchToLoginPrompt } = authSlice.actions;
 
 export default authSlice.reducer;
