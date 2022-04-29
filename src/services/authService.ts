@@ -9,5 +9,8 @@ export const authService = {
   },
   refresh: async (): Promise<AxiosResponse<IAuthResponse>> => {
     return axiosService.get(`${Urls.Auth}${Urls.Refresh}`);
+  },
+  logout: async ():Promise<AxiosResponse<void>> => {
+    return axiosService.post(`${Urls.Auth}${Urls.Logout}`);
   }
 };
