@@ -12,7 +12,7 @@ type FormValues = {
 };
 
 const LoginPrompt: FC = () => {
-  const { isLoginPromptOnScreen, isRegistrationPromptOnScreen } = useAppSelector(
+  const { isLoginPromptOnScreen, isRegistrationPromptOnScreen, user } = useAppSelector(
     (state) => state.authReducer
   );
   const { register, handleSubmit, reset } = useForm<FormValues>();
