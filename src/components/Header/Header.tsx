@@ -25,18 +25,17 @@ const Header: FC = () => {
         <h2>Блог</h2>
         <h2>Про нас</h2>
       </div>
-
       <div className={css.right_side}>
         <h2>Контакти</h2>
         <div className={css.login_logo}>
           <img src={login_logo} alt="login_logo" />
-          {!user ? (
-            <div className={css.login} onClick={openLogin}>
-              Увійти
-            </div>
-          ) : (
+          {user ? (
             <div className={css.login} onClick={logOut}>
               Вийти
+            </div>
+          ) : (
+            <div className={css.login} onClick={openLogin}>
+              Увійти
             </div>
           )}
         </div>
