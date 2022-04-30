@@ -3,7 +3,12 @@ import React, { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import css from './LoginPrompt.module.css';
 import close_button from '../../images/close_button.png';
-import { loginThunk, openLoginPrompt, openRegistrationPrompt } from '../../store/slices/authSlice';
+import {
+  closeLoginPrompt,
+  loginThunk,
+  openLoginPrompt,
+  openRegistrationPrompt
+} from '../../store/slices/authSlice';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 type FormValues = {
@@ -36,7 +41,9 @@ const LoginPrompt: FC = () => {
     <div>
       <div
         className={
-          isLoginPromptOnScreen
+          user
+            ? css.content_wrap_closed
+            : isLoginPromptOnScreen
             ? css.content_wrap
             : isRegistrationPromptOnScreen
             ? css.content_wrap_switch
