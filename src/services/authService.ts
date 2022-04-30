@@ -8,7 +8,7 @@ export const authService = {
     return axiosService.post(`${Urls.Auth}${Urls.Login}`, credentials);
   },
   refresh: async (): Promise<AxiosResponse<IAuthResponse>> => {
-    return axiosService.get(`${Urls.Auth}${Urls.Refresh}`);
+    return axiosService.get(`${Urls.Auth}${Urls.Refresh}`, { withCredentials: true});
   },
   logout: async ():Promise<void> => {
      await axiosService.post(`${Urls.Auth}${Urls.Logout}`);
