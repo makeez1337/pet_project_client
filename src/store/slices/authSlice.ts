@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+
 import { authService } from '../../services/authService';
 import { ILoginCredentials } from '../../interfaces/authInterface';
-import axios from 'axios';
 import { IUser } from '../../interfaces/userInterface';
 
 export interface authPromptState {
   user: IUser | null;
   isAuth: boolean;
+  isCheckAuthLoading: boolean;
 
   isLoginPromptOnScreen: boolean;
   isRegistrationPromptOnScreen: boolean;
@@ -15,6 +17,7 @@ export interface authPromptState {
 const initialState: authPromptState = {
   user: null,
   isAuth: false,
+  isCheckAuthLoading: false,
 
   isLoginPromptOnScreen: false,
   isRegistrationPromptOnScreen: false
@@ -104,16 +107,21 @@ export const authSlice = createSlice({
     });
 
     // checkAuthThunk
+    builder.addCase(checkAuthThunk.pending, ((state, action) => {
+      state.isCheckAuthLoading = true;
+    }))
     builder.addCase(checkAuthThunk.fulfilled, (state, action) => {
       state.isAuth = true;
       state.user = action.payload?.user as IUser;
+      state.isCheckAuthLoading = false;
     });
+
 
     // logOutThunk
     builder.addCase(logOutThunk.fulfilled, (state, action) => {
       state.isAuth = false;
       state.user = null;
-    })
+    });
   }
 });
 
