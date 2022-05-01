@@ -1,15 +1,10 @@
 import React, { FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import css from './LoginPrompt.module.css';
-import close_button from '../../images/close_button.png';
-import {
-  closeLoginPrompt,
-  loginThunk,
-  openLoginPrompt,
-  openRegistrationPrompt
-} from '../../store/slices/authSlice';
+import { loginThunk, openLoginPrompt, openRegistrationPrompt } from '../../store/slices/authSlice';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import close_button from '../../images/close_button.png';
+import css from './LoginPrompt.module.css';
 
 type FormValues = {
   email: string;
@@ -41,9 +36,7 @@ const LoginPrompt: FC = () => {
     <div>
       <div
         className={
-          user
-            ? css.content_wrap_closed
-            : isLoginPromptOnScreen
+          isLoginPromptOnScreen
             ? css.content_wrap
             : isRegistrationPromptOnScreen
             ? css.content_wrap_switch
