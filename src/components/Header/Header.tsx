@@ -8,7 +8,7 @@ import css from './Header.module.css';
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.authReducer);
+  const { user, isCheckAuthLoading } = useAppSelector((state) => state.authReducer);
 
   const openLogin = () => {
     dispatch(openLoginPrompt(true));
@@ -27,12 +27,17 @@ const Header: FC = () => {
       </div>
       <div className={css.right_side}>
         <h2>Контакти</h2>
+        {user && <div className={css.user_email}>{user.email}</div>}
         <div className={css.login_logo}>
           <img src={login_logo} alt="login_logo" />
-          {user ? (
-            <div className={css.login} onClick={logOut}>
-              Вийти
-            </div>
+          {isCheckAuthLoading ? (
+            <div className={css.login}>Загрузка...</div>
+          ) : user ? (
+              <div>
+                <div className={css.login} onClick={logOut}>
+                  Вийти
+                </div>
+              </div>
           ) : (
             <div className={css.login} onClick={openLogin}>
               Увійти
