@@ -1,9 +1,9 @@
 import React from 'react';
 
+import { useAppSelector } from '../../hooks/reduxHooks';
 import LoginPrompt from '../LoginPrompt/LoginPrompt';
 import RegistrationPrompt from '../RegistrationPrompt/RegistrationPrompt';
 import css from './Auth.module.css';
-import { useAppSelector } from '../../hooks/reduxHooks';
 
 const Auth = () => {
   const { isLoginPromptOnScreen, isRegistrationPromptOnScreen, user } = useAppSelector(
@@ -12,12 +12,7 @@ const Auth = () => {
   return (
     <div
       className={
-        user
-          ? ''
-          : isRegistrationPromptOnScreen || isLoginPromptOnScreen
-          ? css.auth_wrap_active
-          : ''
-      }>
+        isRegistrationPromptOnScreen || isLoginPromptOnScreen ? css.auth_wrap_active : ''}>
       <LoginPrompt />
       <RegistrationPrompt />
     </div>
