@@ -33,11 +33,11 @@ const Header: FC = () => {
           {isCheckAuthLoading ? (
             <div className={css.login}>Загрузка...</div>
           ) : user ? (
-              <div>
-                <div className={css.login} onClick={logOut}>
-                  Вийти
-                </div>
+            <div>
+              <div className={css.login} onClick={logOut}>
+                Вийти
               </div>
+            </div>
           ) : (
             <div className={css.login} onClick={openLogin}>
               Увійти

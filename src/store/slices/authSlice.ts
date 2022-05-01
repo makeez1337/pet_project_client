@@ -107,15 +107,14 @@ export const authSlice = createSlice({
     });
 
     // checkAuthThunk
-    builder.addCase(checkAuthThunk.pending, ((state, action) => {
+    builder.addCase(checkAuthThunk.pending, (state, action) => {
       state.isCheckAuthLoading = true;
-    }))
+    });
     builder.addCase(checkAuthThunk.fulfilled, (state, action) => {
       state.isAuth = true;
       state.user = action.payload?.user as IUser;
       state.isCheckAuthLoading = false;
     });
-
 
     // logOutThunk
     builder.addCase(logOutThunk.fulfilled, (state, action) => {

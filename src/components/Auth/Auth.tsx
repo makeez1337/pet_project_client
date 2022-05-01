@@ -11,8 +11,7 @@ const Auth = () => {
   );
   return (
     <div
-      className={
-        isRegistrationPromptOnScreen || isLoginPromptOnScreen ? css.auth_wrap_active : ''}>
+      className={isRegistrationPromptOnScreen || isLoginPromptOnScreen ? css.auth_wrap_active : ''}>
       <LoginPrompt />
       <RegistrationPrompt />
     </div>
