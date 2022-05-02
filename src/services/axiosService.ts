@@ -3,7 +3,7 @@ import axios from 'axios';
 import baseURL, { Urls } from '../constants/urls';
 import { authService } from './authService';
 
-export const axiosService = axios.create({ baseURL, withCredentials: true });
+const axiosService = axios.create({ baseURL, withCredentials: true });
 
 axiosService.interceptors.request.use((config: any) => {
   config.headers.Authorization = localStorage.getItem('accessToken');
@@ -16,16 +16,19 @@ axiosService.interceptors.response.use(
   },
   async (error) => {
     const originalConfig = error.config;
-    try {
-      if (error?.response?.status === 401 && !originalConfig._retry) {
-        originalConfig._retry = true;
+    if (error?.response?.status === 401 && error.config && !originalConfig._isRetry) {
+      try {
+        originalConfig._isRetry = true;
+        console.log(originalConfig._isRetry);
         const response = await authService.refresh();
         localStorage.setItem('accessToken', response.data.accessToken);
         return axiosService.request(originalConfig);
+      } catch (e) {
+        console.log('Не авторизований');
       }
-    } catch (e) {
-      console.log('Не авторизований');
     }
     throw error;
   }
 );
+
+export default axiosService;
