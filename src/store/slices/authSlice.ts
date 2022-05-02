@@ -28,27 +28,24 @@ const initialState: authPromptState = {
 };
 
 export const loginThunk = createAsyncThunk<
-    IAuthResponse,
-    ILoginCredentials,
-    {
-      rejectValue: CustomError
-    }
-    >(
-  'authSlice/login',
-  async (credentials: ILoginCredentials, { rejectWithValue }) => {
-    try {
-      const response = await authService.login(credentials);
-      localStorage.setItem('accessToken', response.data.accessToken);
-      return response.data as IAuthResponse;
-    } catch (err) {
-      let error = err as AxiosError<CustomError>
-      if (!error.response) {
-        throw err
-      }
-      return rejectWithValue(error.response.data)
-    }
+  IAuthResponse,
+  ILoginCredentials,
+  {
+    rejectValue: CustomError;
   }
-);
+>('authSlice/login', async (credentials: ILoginCredentials, { rejectWithValue }) => {
+  try {
+    const response = await authService.login(credentials);
+    localStorage.setItem('accessToken', response.data.accessToken);
+    return response.data as IAuthResponse;
+  } catch (err) {
+    let error = err as AxiosError<CustomError>;
+    if (!error.response) {
+      throw err;
+    }
+    return rejectWithValue(error.response.data);
+  }
+});
 
 export const checkAuthThunk = createAsyncThunk(
   'authSlice/checkAuthThunk',
