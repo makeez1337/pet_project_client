@@ -15,6 +15,11 @@
     transition: 1.5s;
 }
 
+.height350 {
+    height: 350px;
+    transition: 0s;
+}
+
 .content_wrap_closed {
     display: flex;
     flex-direction: column;
@@ -114,4 +119,8 @@ form > input {
 .registration_button:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+
+.error_msg {
+    font-size: 10px;
 }
