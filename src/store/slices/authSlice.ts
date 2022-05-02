@@ -2,7 +2,11 @@ import axios, { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { authService } from '../../services/authService';
-import { IAuthResponse, ILoginCredentials } from '../../interfaces/authInterface';
+import {
+  IAuthResponse,
+  ILoginCredentials,
+  IRegistrationForm
+} from '../../interfaces/authInterface';
 import { IUser } from '../../interfaces/userInterface';
 
 export interface authPromptState {
@@ -26,6 +30,26 @@ const initialState: authPromptState = {
   isLoginPromptOnScreen: false,
   isRegistrationPromptOnScreen: false
 };
+
+export const registrationThunk = createAsyncThunk<
+  IAuthResponse,
+  Partial<IRegistrationForm>,
+  {
+    rejectValue: CustomError;
+  }
+>('authSlice/registration', async (userData: Partial<IRegistrationForm>, { rejectWithValue }) => {
+  try {
+    const response = await authService.registration(userData);
+    localStorage.setItem('accessToken', response.data.accessToken);
+    return response.data as IAuthResponse;
+  } catch (err) {
+    let error = err as AxiosError<CustomError>;
+    if (!error.response) {
+      throw err;
+    }
+    return rejectWithValue(error.response.data);
+  }
+});
 
 export const loginThunk = createAsyncThunk<
   IAuthResponse,
