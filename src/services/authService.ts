@@ -1,4 +1,4 @@
-import { axiosService } from './axiosService';
+import axiosService from './axiosService';
 import { Urls } from '../constants/urls';
 import { ILoginCredentials, IAuthResponse } from '../interfaces/authInterface';
 import { AxiosResponse } from 'axios';
