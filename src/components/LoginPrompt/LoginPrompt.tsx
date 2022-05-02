@@ -28,8 +28,8 @@ const LoginPrompt: FC = () => {
     dispatch(openRegistrationPrompt(true));
   };
 
-  const onSubmit: SubmitHandler<FormValues> = async (userdata) => {
-    const data = await dispatch(loginThunk(userdata));
+  const onSubmit: SubmitHandler<FormValues> = async (inputData) => {
+    const data = await dispatch(loginThunk(inputData));
 
     const { user } = data.payload as IAuthResponse;
 
