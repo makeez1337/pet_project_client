@@ -25,9 +25,9 @@ const Header: FC = () => {
         <h2>Блог</h2>
         <h2>Про нас</h2>
       </div>
+      {user && <div className={css.user_email}>{user.email}</div>}
       <div className={css.right_side}>
         <h2>Контакти</h2>
-        {user && <div className={css.user_email}>{user.email}</div>}
         <div className={css.login_logo}>
           <img src={login_logo} alt="login_logo" />
           {isCheckAuthLoading ? (
