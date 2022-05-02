@@ -1,5 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
+import { joiResolver } from '@hookform/resolvers/joi';
 
+import { authValidator } from '../../validators/auth/authValidator';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { loginThunk, openLoginPrompt, openRegistrationPrompt } from '../../store/slices/authSlice';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -16,7 +18,9 @@ const LoginPrompt: FC = () => {
   const { isLoginPromptOnScreen, isRegistrationPromptOnScreen, user } = useAppSelector(
     (state) => state.authReducer
   );
-  const { register, handleSubmit, reset } = useForm<FormValues>();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>({
+    resolver: joiResolver(authValidator.registration)
+  });
 
   const dispatch = useAppDispatch();
 
@@ -38,6 +42,8 @@ const LoginPrompt: FC = () => {
     }
     reset();
   };
+
+  console.log(errors);
 
   return (
     <div>
