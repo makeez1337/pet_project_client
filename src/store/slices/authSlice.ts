@@ -39,7 +39,7 @@ export const registrationThunk = createAsyncThunk<
   }
 >('authSlice/registration', async (userData: Partial<IRegistrationForm>, { rejectWithValue }) => {
   try {
-    const response = await authService.registration(userData);
+    const response = await authService.registration({...userData});
     localStorage.setItem('accessToken', response.data.accessToken);
     return response.data as IAuthResponse;
   } catch (err) {
