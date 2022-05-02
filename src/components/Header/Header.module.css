@@ -51,6 +51,7 @@
 .login  {
     margin-left: 5px;
     cursor: pointer;
+    text-align: center;
 }
 
 .login:hover {
@@ -59,5 +60,5 @@
 }
 
 .user_email {
-    color: red;
+    color: #bfbfbf;
 }
