@@ -18,7 +18,12 @@ const LoginPrompt: FC = () => {
   const { isLoginPromptOnScreen, isRegistrationPromptOnScreen, user } = useAppSelector(
     (state) => state.authReducer
   );
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<FormValues>({
     resolver: joiResolver(authValidator.registration)
   });
 
@@ -26,6 +31,7 @@ const LoginPrompt: FC = () => {
 
   const closeLogin = () => {
     dispatch(openLoginPrompt(false));
+    reset();
   };
 
   const openRegistration = () => {
@@ -43,14 +49,14 @@ const LoginPrompt: FC = () => {
     reset();
   };
 
-  console.log(errors);
-
   return (
     <div>
       <div
         className={
           isLoginPromptOnScreen
-            ? css.content_wrap
+            ? errors.email || errors.password
+              ? `${css.content_wrap} ${css.height350}`
+              : css.content_wrap
             : isRegistrationPromptOnScreen
             ? css.content_wrap_switch
             : css.content_wrap_closed
@@ -64,7 +70,9 @@ const LoginPrompt: FC = () => {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input type="text" placeholder={'Ваш емейл'} {...register('email')} />
+            {errors.email && <div className={css.error_msg}>{errors.email.message}</div>}
             <input type="password" placeholder={'Ваш пароль'} {...register('password')} />
+            {errors.password && <div className={css.error_msg}>{errors.password.message}</div>}
             <button className={css.btn}>Увійти в кабінет</button>
           </form>
         </div>
