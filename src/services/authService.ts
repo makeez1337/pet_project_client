@@ -1,9 +1,12 @@
 import axiosService from './axiosService';
 import { Urls } from '../constants/urls';
-import { ILoginCredentials, IAuthResponse } from '../interfaces/authInterface';
+import { ILoginCredentials, IAuthResponse, IRegistrationForm } from '../interfaces/authInterface';
 import { AxiosResponse } from 'axios';
 
 export const authService = {
+  registration: async (userData: Partial<IRegistrationForm>) => {
+    return axiosService.post(`${Urls.Auth}${Urls.Registration}`, userData);
+  },
   login: async (credentials: ILoginCredentials): Promise<AxiosResponse<IAuthResponse>> => {
     return axiosService.post(`${Urls.Auth}${Urls.Login}`, credentials);
   },
