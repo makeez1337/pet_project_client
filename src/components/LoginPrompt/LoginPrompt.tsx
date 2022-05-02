@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { loginThunk, openLoginPrompt, openRegistrationPrompt } from '../../store/slices/authSlice';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { IAuthResponse } from '../../interfaces/authInterface';
 import close_button from '../../images/close_button.png';
 import css from './LoginPrompt.module.css';
 
@@ -27,8 +28,14 @@ const LoginPrompt: FC = () => {
     dispatch(openRegistrationPrompt(true));
   };
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    dispatch(loginThunk(data));
+  const onSubmit: SubmitHandler<FormValues> = async (userdata) => {
+    const data = await dispatch(loginThunk(userdata));
+
+    const { user } = data.payload as IAuthResponse;
+
+    if (user) {
+      window.location.reload();
+    }
     reset();
   };
 
