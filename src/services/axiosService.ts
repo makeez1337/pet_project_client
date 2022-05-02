@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import baseURL, { Urls } from '../constants/urls';
-import { authService } from './authService';
 
 const axiosService = axios.create({ baseURL, withCredentials: true });
 
@@ -20,7 +19,7 @@ axiosService.interceptors.response.use(
       try {
         originalConfig._isRetry = true;
         console.log(originalConfig._isRetry);
-        const response = await authService.refresh();
+        const response = await axios.get(`${Urls.Auth}${Urls.Refresh}`, { withCredentials: true });
         localStorage.setItem('accessToken', response.data.accessToken);
         return axiosService.request(originalConfig);
       } catch (e) {
