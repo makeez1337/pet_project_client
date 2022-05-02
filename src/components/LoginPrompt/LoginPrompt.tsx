@@ -51,7 +51,7 @@ const LoginPrompt: FC = () => {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input type="text" placeholder={'Ваш емейл'} {...register('email')} />
-            <input type="text" placeholder={'Ваш пароль'} {...register('password')} />
+            <input type="password" placeholder={'Ваш пароль'} {...register('password')} />
             <button className={css.btn}>Увійти в кабінет</button>
           </form>
         </div>
