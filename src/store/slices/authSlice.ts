@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { authService } from '../../services/authService';
-import { ILoginCredentials } from '../../interfaces/authInterface';
+import { IAuthResponse, ILoginCredentials } from '../../interfaces/authInterface';
 import { IUser } from '../../interfaces/userInterface';
 
 export interface authPromptState {
@@ -14,6 +14,10 @@ export interface authPromptState {
   isRegistrationPromptOnScreen: boolean;
 }
 
+export interface CustomError {
+  message: string;
+}
+
 const initialState: authPromptState = {
   user: null,
   isAuth: false,
@@ -23,22 +27,25 @@ const initialState: authPromptState = {
   isRegistrationPromptOnScreen: false
 };
 
-export const loginThunk = createAsyncThunk(
+export const loginThunk = createAsyncThunk<
+    IAuthResponse,
+    ILoginCredentials,
+    {
+      rejectValue: CustomError
+    }
+    >(
   'authSlice/login',
   async (credentials: ILoginCredentials, { rejectWithValue }) => {
     try {
       const response = await authService.login(credentials);
       localStorage.setItem('accessToken', response.data.accessToken);
-      return response.data;
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        console.log('error message: ', e.response?.data);
-        return rejectWithValue(e.response?.data);
+      return response.data as IAuthResponse;
+    } catch (err) {
+      let error = err as AxiosError<CustomError>
+      if (!error.response) {
+        throw err
       }
-      if (e instanceof Error) {
-        console.log('unexpected error: ', e.message);
-        return rejectWithValue(e.message);
-      }
+      return rejectWithValue(error.response.data)
     }
   }
 );
@@ -67,7 +74,7 @@ export const logOutThunk = createAsyncThunk(
   'authSlice/logOutThunk',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await authService.logout();
+      await authService.logout();
       localStorage.removeItem('accessToken');
     } catch (e) {
       if (axios.isAxiosError(e)) {
