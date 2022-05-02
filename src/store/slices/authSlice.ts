@@ -128,6 +128,12 @@ export const authSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
+    // registrationThunk
+    builder.addCase(registrationThunk.fulfilled, ((state, action) => {
+      state.isAuth = true;
+      state.user = action.payload?.user as IUser;
+    }))
+
     // loginThunk
     builder.addCase(loginThunk.fulfilled, (state, action) => {
       state.isAuth = true;
