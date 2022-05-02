@@ -14,3 +14,11 @@ export interface IAuthResponse {
     role: string;
   };
 }
+
+export interface IRegistrationForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  repeatedPassword: string;
+}
