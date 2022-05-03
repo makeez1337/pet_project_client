@@ -37,8 +37,8 @@
 }
 
 .cover_wrap {
-    height: 530px;
-    margin-top: -265px;
+    height: 485px;
+    margin-top: -242px;
 }
 
 .close_button_wrap {
@@ -65,4 +65,8 @@
 
 .bottom_menu {
     margin-top: 10px;
+}
+
+.error_msg {
+    font-size: 12px;
 }
