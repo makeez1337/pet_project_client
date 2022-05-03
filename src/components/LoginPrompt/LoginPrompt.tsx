@@ -36,6 +36,7 @@ const LoginPrompt: FC = () => {
 
   const openRegistration = () => {
     dispatch(openRegistrationPrompt(true));
+    reset();
   };
 
   const onSubmit: SubmitHandler<FormValues> = async (inputData) => {
