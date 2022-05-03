@@ -36,6 +36,11 @@
     border-radius: 5px;
 }
 
+.cover_wrap {
+    height: 530px;
+    margin-top: -265px;
+}
+
 .close_button_wrap {
     display: flex;
     justify-content: end;
