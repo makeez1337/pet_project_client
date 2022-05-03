@@ -24,7 +24,7 @@ const LoginPrompt: FC = () => {
     reset,
     formState: { errors }
   } = useForm<FormValues>({
-    resolver: joiResolver(authValidator.registration)
+    resolver: joiResolver(authValidator.login)
   });
 
   const dispatch = useAppDispatch();
