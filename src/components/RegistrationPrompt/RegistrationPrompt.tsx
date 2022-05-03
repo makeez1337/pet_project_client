@@ -60,15 +60,15 @@ const RegistrationPrompt = () => {
       <h1 className={css.header}>Реєстрація</h1>
       <form className={css.form_style} onSubmit={handleSubmit(onSubmit)}>
         <input type="text" placeholder={'Ваше імя'} {...register('firstName')} />
-        {errors.firstName && <div>{errors.firstName.message}</div>}
+        {errors.firstName && <div className={css.error_msg}>{errors.firstName.message}</div>}
         <input type="text" placeholder={'Ваша фамілія'} {...register('lastName')} />
-        {errors.lastName && <div>{errors.lastName.message}</div>}
+        {errors.lastName && <div className={css.error_msg}>{errors.lastName.message}</div>}
         <input type="text" placeholder={'Ваш емейл'} {...register('email')} />
-        {errors.email && <div>{errors.email.message}</div>}
+        {errors.email && <div className={css.error_msg}>{errors.email.message}</div>}
         <input type="password" placeholder={'Пароль'} {...register('password')} />
-        {errors.password && <div>{errors.password.message}</div>}
+        {errors.password && <div className={css.error_msg}>{errors.password.message}</div>}
         <input type="password" placeholder={'Повторіть пароль'} {...register('repeatedPassword')} />
-        {errors.repeatedPassword && <div>{errors.repeatedPassword.message}</div>}
+        {errors.repeatedPassword && <div className={css.error_msg}>{errors.repeatedPassword.message}</div>}
         <button className={css.btn}>Зареєструватись</button>
       </form>
       <div className={css.bottom_menu}>
