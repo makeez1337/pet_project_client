@@ -1,9 +1,11 @@
 import React from 'react';
+import { joiResolver } from '@hookform/resolvers/joi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import { authValidator } from '../../validators/auth/authValidator';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { registrationThunk, switchToLoginPrompt } from '../../store/slices/authSlice';
 import { IAuthResponse, IRegistrationForm } from '../../interfaces/authInterface';
+import { registrationThunk, switchToLoginPrompt } from '../../store/slices/authSlice';
 import close_button from '../../images/close_button.png';
 import css from './RegistrationPrompt.module.css';
 
@@ -11,10 +13,18 @@ const RegistrationPrompt = () => {
   const { isRegistrationPromptOnScreen } = useAppSelector((state) => state.authReducer);
   const dispatch = useAppDispatch();
 
-  const { register, handleSubmit, reset } = useForm<IRegistrationForm>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<IRegistrationForm>({
+    resolver: joiResolver(authValidator.registration)
+  });
 
   const switchToLog = () => {
     dispatch(switchToLoginPrompt());
+    reset();
   };
 
   const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
@@ -33,19 +43,32 @@ const RegistrationPrompt = () => {
     reset();
   };
 
+  const isErrors = !!Object.keys(errors).length;
+
   return (
     <div
-      className={isRegistrationPromptOnScreen ? css.content_wrap_opened : css.content_wrap_closed}>
+      className={
+        isRegistrationPromptOnScreen
+          ? isErrors
+            ? `${css.content_wrap_opened} ${css.cover_wrap}`
+            : css.content_wrap_opened
+          : css.content_wrap_closed
+      }>
       <div className={css.close_button_wrap}>
         <img src={close_button} alt="close_button" onClick={switchToLog} />
       </div>
       <h1 className={css.header}>Реєстрація</h1>
       <form className={css.form_style} onSubmit={handleSubmit(onSubmit)}>
         <input type="text" placeholder={'Ваше імя'} {...register('firstName')} />
+        {errors.firstName && <div>{errors.firstName.message}</div>}
         <input type="text" placeholder={'Ваша фамілія'} {...register('lastName')} />
+        {errors.lastName && <div>{errors.lastName.message}</div>}
         <input type="text" placeholder={'Ваш емейл'} {...register('email')} />
+        {errors.email && <div>{errors.email.message}</div>}
         <input type="password" placeholder={'Пароль'} {...register('password')} />
+        {errors.password && <div>{errors.password.message}</div>}
         <input type="password" placeholder={'Повторіть пароль'} {...register('repeatedPassword')} />
+        {errors.repeatedPassword && <div>{errors.repeatedPassword.message}</div>}
         <button className={css.btn}>Зареєструватись</button>
       </form>
       <div className={css.bottom_menu}>
