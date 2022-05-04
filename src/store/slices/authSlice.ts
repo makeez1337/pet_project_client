@@ -13,6 +13,7 @@ export interface authPromptState {
   user: IUser | null;
   isAuth: boolean;
   isCheckAuthLoading: boolean;
+  loginError: string | null | undefined;
 
   isLoginPromptOnScreen: boolean;
   isRegistrationPromptOnScreen: boolean;
@@ -26,6 +27,7 @@ const initialState: authPromptState = {
   user: null,
   isAuth: false,
   isCheckAuthLoading: false,
+  loginError: null,
 
   isLoginPromptOnScreen: false,
   isRegistrationPromptOnScreen: false
@@ -138,16 +140,24 @@ export const authSlice = createSlice({
     builder.addCase(loginThunk.fulfilled, (state, action) => {
       state.isAuth = true;
       state.user = action.payload?.user as IUser;
+      state.loginError = null;
     });
+    builder.addCase(loginThunk.rejected, (state, action) => {
+      state.isAuth = false;
+      state.user = null;
+      state.loginError = action.payload?.message;
+    })
 
     // checkAuthThunk
     builder.addCase(checkAuthThunk.pending, (state, action) => {
       state.isCheckAuthLoading = true;
+      state.user = null;
+      state.isAuth = false;
     });
     builder.addCase(checkAuthThunk.fulfilled, (state, action) => {
-      state.isAuth = true;
-      state.user = action.payload?.user as IUser;
       state.isCheckAuthLoading = false;
+      state.user = action.payload?.user as IUser;
+      state.isAuth = true;
     });
 
     // logOutThunk
