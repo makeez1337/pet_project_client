@@ -9,7 +9,7 @@ export const authValidator = {
     email: commonValidator.emailValidator,
     password: commonValidator.passwordValidator,
     repeatedPassword: Joi.string().valid(Joi.ref('password')).required().messages({
-      'any.only': 'Passwords is not equal'
+      'any.only': '"password" is not equal'
     })
   }),
   login: Joi.object().keys({
