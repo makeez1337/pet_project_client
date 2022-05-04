@@ -41,7 +41,7 @@ export const registrationThunk = createAsyncThunk<
   }
 >('authSlice/registration', async (userData: Partial<IRegistrationForm>, { rejectWithValue }) => {
   try {
-    const response = await authService.registration({...userData});
+    const response = await authService.registration({ ...userData });
     localStorage.setItem('accessToken', response.data.accessToken);
     return response.data as IAuthResponse;
   } catch (err) {
@@ -127,14 +127,17 @@ export const authSlice = createSlice({
     switchToLoginPrompt: (state) => {
       state.isRegistrationPromptOnScreen = false;
       state.isLoginPromptOnScreen = true;
+    },
+    clearLoginError: (state) => {
+      state.loginError = null;
     }
   },
   extraReducers: (builder) => {
     // registrationThunk
-    builder.addCase(registrationThunk.fulfilled, ((state, action) => {
+    builder.addCase(registrationThunk.fulfilled, (state, action) => {
       state.isAuth = true;
       state.user = action.payload?.user as IUser;
-    }))
+    });
 
     // loginThunk
     builder.addCase(loginThunk.fulfilled, (state, action) => {
@@ -146,7 +149,7 @@ export const authSlice = createSlice({
       state.isAuth = false;
       state.user = null;
       state.loginError = action.payload?.message;
-    })
+    });
 
     // checkAuthThunk
     builder.addCase(checkAuthThunk.pending, (state, action) => {
@@ -168,6 +171,7 @@ export const authSlice = createSlice({
   }
 });
 
-export const { openLoginPrompt, openRegistrationPrompt, switchToLoginPrompt } = authSlice.actions;
+export const { openLoginPrompt, openRegistrationPrompt, switchToLoginPrompt, clearLoginError } =
+  authSlice.actions;
 
 export default authSlice.reducer;
