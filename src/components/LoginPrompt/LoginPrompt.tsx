@@ -1,10 +1,15 @@
 import React, { FC } from 'react';
 import { joiResolver } from '@hookform/resolvers/joi';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { authValidator } from '../../validators/auth/authValidator';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { loginThunk, openLoginPrompt, openRegistrationPrompt } from '../../store/slices/authSlice';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import {
+  clearLoginError,
+  loginThunk,
+  openLoginPrompt,
+  openRegistrationPrompt
+} from '../../store/slices/authSlice';
 import { IAuthResponse } from '../../interfaces/authInterface';
 import close_button from '../../images/close_button.png';
 import css from './LoginPrompt.module.css';
@@ -31,11 +36,13 @@ const LoginPrompt: FC = () => {
 
   const closeLogin = () => {
     dispatch(openLoginPrompt(false));
+    dispatch(clearLoginError());
     reset();
   };
 
   const openRegistration = () => {
     dispatch(openRegistrationPrompt(true));
+    dispatch(clearLoginError());
     reset();
   };
 
