@@ -15,7 +15,7 @@ type FormValues = {
 };
 
 const LoginPrompt: FC = () => {
-  const { isLoginPromptOnScreen, isRegistrationPromptOnScreen, user } = useAppSelector(
+  const { isLoginPromptOnScreen, isRegistrationPromptOnScreen, loginError } = useAppSelector(
     (state) => state.authReducer
   );
   const {
@@ -55,7 +55,7 @@ const LoginPrompt: FC = () => {
       <div
         className={
           isLoginPromptOnScreen
-            ? errors.email || errors.password
+            ? errors.email || errors.password || loginError
               ? `${css.content_wrap} ${css.height350}`
               : css.content_wrap
             : isRegistrationPromptOnScreen
@@ -74,6 +74,9 @@ const LoginPrompt: FC = () => {
             {errors.email && <div className={css.error_msg}>{errors.email.message}</div>}
             <input type="password" placeholder={'Ваш пароль'} {...register('password')} />
             {errors.password && <div className={css.error_msg}>{errors.password.message}</div>}
+            {loginError && !errors.password && !errors.email && (
+              <div className={css.error_msg}>{loginError}</div>
+            )}
             <button className={css.btn}>Увійти в кабінет</button>
           </form>
         </div>
