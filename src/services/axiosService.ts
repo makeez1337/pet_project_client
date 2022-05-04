@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import baseURL, { Urls } from '../constants/urls';
+import { IAuthResponse } from '../interfaces/authInterface';
 
 const axiosService = axios.create({ baseURL, withCredentials: true });
 
@@ -18,7 +19,9 @@ axiosService.interceptors.response.use(
     if (error?.response?.status === 401 && error.config && !originalConfig._isRetry) {
       try {
         originalConfig._isRetry = true;
-        const response = await axios.get(`${Urls.Auth}${Urls.Refresh}`, { withCredentials: true });
+        const response = await axios.get<IAuthResponse>(`${Urls.Auth}${Urls.Refresh}`, {
+          withCredentials: true
+        });
         localStorage.setItem('accessToken', response.data.accessToken);
         return axiosService.request(originalConfig);
       } catch (e) {
