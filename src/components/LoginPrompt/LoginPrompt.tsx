@@ -27,6 +27,7 @@ const LoginPrompt: FC = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors }
   } = useForm<FormValues>({
     resolver: joiResolver(authValidator.login)
@@ -56,6 +57,14 @@ const LoginPrompt: FC = () => {
     }
     reset();
   };
+
+  watch((value) => {
+    const { email, password } = value;
+
+    if (email || password) {
+      dispatch(clearLoginError());
+    }
+  });
 
   return (
     <div>
