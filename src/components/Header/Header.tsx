@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { logOutThunk, openLoginPrompt } from '../../store/slices/authSlice';
@@ -21,8 +22,12 @@ const Header: FC = () => {
   return (
     <div className={css.header_wrap}>
       <div className={css.left_side}>
-        <h2>Каталог</h2>
-        <h2>Блог</h2>
+        <Link to={'/'}>
+          <h2>Головна</h2>
+        </Link>
+        <Link to={'/catalog/1'}>
+          <h2>Каталог</h2>
+        </Link>
         <h2>Про нас</h2>
       </div>
       {user && <div className={css.user_email}>{user.email}</div>}
