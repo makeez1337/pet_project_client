@@ -1,0 +1,16 @@
+.phoneImg {
+    width: 300px;
+    height: 300px;
+}
+
+.content_wrap {
+    background-color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.content_wrap:hover {
+    cursor: pointer;
+}
