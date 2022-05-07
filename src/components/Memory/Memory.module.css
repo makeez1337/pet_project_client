@@ -1,0 +1,8 @@
+.memory {
+    font-size: 18px;
+    text-align: center;
+}
+
+.memory:hover {
+    cursor: pointer;
+}
