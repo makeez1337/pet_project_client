@@ -4,6 +4,7 @@ import Brands from '../Brands/Brands';
 import MemoryMap from '../MemoryMap/MemoryMap';
 import RamMap from '../RamMap/RamMap';
 import css from './FilterMenu.module.css';
+import RangeSlider from '../RangeSlider/RangeSlider';
 
 const FilterMenu: FC = () => {
   return (
@@ -12,6 +13,7 @@ const FilterMenu: FC = () => {
       <Brands />
       <MemoryMap />
       <RamMap />
+      <RangeSlider />
     </div>
   );
 };
