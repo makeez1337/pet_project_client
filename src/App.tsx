@@ -10,7 +10,7 @@ const App: FC = () => {
     <Routes>
       <Route index element={<IndexPage />} />
 
-      <Route path={'catalog/:page'} element={<Catalog />} />
+      <Route path={'catalog'} element={<Catalog />} />
     </Routes>
   );
 };
