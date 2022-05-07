@@ -149,6 +149,7 @@ export const authSlice = createSlice({
       state.isAuth = false;
       state.user = null;
       state.loginError = action.payload?.message;
+      state.isCheckAuthLoading = false;
     });
 
     // checkAuthThunk
@@ -162,6 +163,11 @@ export const authSlice = createSlice({
       state.user = action.payload?.user as IUser;
       state.isAuth = true;
     });
+    builder.addCase(checkAuthThunk.rejected, (state, action) => {
+      state.isCheckAuthLoading = false;
+      state.user = null;
+      state.isAuth = false;
+    })
 
     // logOutThunk
     builder.addCase(logOutThunk.fulfilled, (state, action) => {
