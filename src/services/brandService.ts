@@ -5,5 +5,5 @@ import { IBrand } from '../interfaces/brandInterface';
 import { Urls } from '../constants/urls';
 
 export const brandService = {
-  getAll: (): Promise<AxiosResponse<IBrand>> => axiosService.get(`${Urls.Brands}`)
+  getAll: async (): Promise<AxiosResponse<IBrand[]>> => axiosService.get(`${Urls.Brands}`)
 };
