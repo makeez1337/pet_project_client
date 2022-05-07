@@ -18,6 +18,7 @@ const FilterMenu: FC = () => {
         <h1 className={css.header_style}>Смартфони</h1>
         <div className={css.brands_wrap}>
           <hr />
+          <div className={css.filter_describe}>Модель:</div>
           {brands?.map((brand) => (
             <Brand key={brand.id} {...brand} />
           ))}
