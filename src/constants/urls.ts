@@ -8,7 +8,9 @@ export enum Urls {
   Registration = '/registration',
   Login = '/login',
   Refresh = '/refresh',
-  Logout = '/logout'
+  Logout = '/logout',
+  Phones = '/phones',
+  Pagination = '/pagination'
 }
 
 export default baseURL;
