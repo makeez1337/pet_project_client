@@ -7,21 +7,9 @@
     text-align: center;
 }
 
-.brands_wrap {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
 
 hr {
     width: 70%;
     margin: 0 auto;
 }
 
-.filter_describe {
-    text-align: center;
-    font-size: 23px;
-    font-weight: 700;
-    font-family: 'Roboto Slab', sans-serif;
-}
