@@ -4,6 +4,7 @@ import Auth from '../../components/Auth/Auth';
 import FilterMenu from '../../components/FilterMenu/FilterMenu';
 
 import css from './Catalog.module.css';
+import Phones from '../../components/Phones/Phones';
 
 const Catalog = () => {
   return (
@@ -12,6 +13,7 @@ const Catalog = () => {
       <Auth />
       <div className={css.menu_wrap}>
         <FilterMenu />
+        <Phones />
       </div>
     </div>
   );
