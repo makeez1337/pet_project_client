@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { IBrand } from '../../interfaces/brandInterface';
+import { IBrand } from '../../interfaces/PhoneFieldsInterface';
 import css from './Brand.module.css';
 
 const Brand: FC<IBrand> = ({ name }) => {
