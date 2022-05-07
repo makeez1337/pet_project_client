@@ -1,6 +1,9 @@
+.text_wrap {
+    text-align: center;
+}
+
 .brand {
     font-size: 18px;
-    text-align: center;
 }
 
 .brand:hover {

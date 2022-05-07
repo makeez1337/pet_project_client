@@ -1,6 +1,9 @@
+.text_wrap {
+    text-align: center;
+}
+
 .ram {
     font-size: 18px;
-    text-align: center;
 }
 
 .ram:hover {

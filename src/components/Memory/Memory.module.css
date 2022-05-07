@@ -1,6 +1,9 @@
+.text_wrap {
+    text-align: center;
+}
+
 .memory {
     font-size: 18px;
-    text-align: center;
 }
 
 .memory:hover {
