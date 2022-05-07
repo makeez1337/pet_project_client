@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 import axiosService from './axiosService';
-import { IBrand } from '../interfaces/brandInterface';
+import { IBrand } from '../interfaces/PhoneFieldsInterface';
 import { Urls } from '../constants/urls';
 
 export const brandService = {
