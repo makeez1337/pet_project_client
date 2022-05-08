@@ -9,3 +9,12 @@
 .ram:hover {
     cursor: pointer;
 }
+
+.active {
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.active:hover {
+    cursor: pointer;
+}
