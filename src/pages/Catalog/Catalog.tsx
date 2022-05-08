@@ -12,7 +12,9 @@ const Catalog = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(checkAuthThunk());
+    if (localStorage.getItem('accessToken')) {
+      dispatch(checkAuthThunk());
+    }
   });
 
   return (
