@@ -7,19 +7,18 @@ import Phone from '../Phone/Phone';
 import css from './Phones.module.css';
 
 const Phones: FC = () => {
-  const location = useLocation();
-  const { search } = location;
-
   const [phones, setPhones] = useState<IPhone[] | null>(null);
 
+  const { search } = useLocation();
+
   useEffect(() => {
-    phoneService.getByPage(search).then((res) => setPhones(res.data.rows));
+    phoneService.getByQuery(search).then((res) => setPhones(res.data.rows));
   }, [search]);
 
   return (
     <div className={css.content_wrap}>
       {phones?.map((phone) => (
-        <Phone key={phone.id} {...phone}/>
+        <Phone key={phone.id} {...phone} />
       ))}
     </div>
   );
