@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { logOutThunk, openLoginPrompt } from '../../store/slices/authSlice';
@@ -19,13 +19,15 @@ const Header: FC = () => {
     dispatch(logOutThunk());
   };
 
+  const { search } = useLocation();
+
   return (
     <div className={css.header_wrap}>
       <div className={css.left_side}>
         <Link to={'/'}>
           <h2>Головна</h2>
         </Link>
-        <Link to={'/catalog'}>
+        <Link to={search ? `/catalog${search}` : '/catalog'}>
           <h2>Каталог</h2>
         </Link>
         <h2>Про нас</h2>
