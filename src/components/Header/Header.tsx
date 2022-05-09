@@ -25,7 +25,7 @@ const Header: FC = () => {
         <Link to={'/'}>
           <h2>Головна</h2>
         </Link>
-        <Link to={'/catalog?page=1'}>
+        <Link to={'/catalog'}>
           <h2>Каталог</h2>
         </Link>
         <h2>Про нас</h2>
