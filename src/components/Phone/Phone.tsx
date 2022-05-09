@@ -5,7 +5,7 @@ import { IPhone } from '../../interfaces/PhoneFieldsInterface';
 import css from './Phone.module.css';
 
 const Phone: FC<IPhone> = (props) => {
-  const { name, brandId, description, camera, img, memoryId, price, ramId } = props;
+  const { name, img, price } = props;
 
   const splitedImg = img.split('/')[3];
   const phoneImg = `${constants.baseImgUrl}${splitedImg}`;
