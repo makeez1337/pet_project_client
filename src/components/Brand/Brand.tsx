@@ -1,25 +1,49 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { IBrand } from '../../interfaces/PhoneFieldsInterface';
 import css from './Brand.module.css';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { addBrand } from '../../store/slices/filterSlice';
 
 const Brand: FC<IBrand> = ({ id, name }) => {
-  const dispatch = useAppDispatch();
-  const { activeBrand } = useAppSelector((state) => state.filterReducer);
 
-  const addBrandFilter = () => {
-    dispatch(addBrand(id));
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const memoryId = searchParams.get('memoryId') || '';
+  const ramId = searchParams.get('ramId') || '';
+  let brandQuery = searchParams.get('brandId') || '';
+
+  const isActive = searchParams.get('brandId')?.split(',').includes(id.toString()) as boolean;
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked && searchParams.get('brandId')) {
+      brandQuery += `,${id.toString()}`;
+      setSearchParams({ brandId: brandQuery, memoryId, ramId });
+      return;
+    }
+
+    if (e.target.checked) {
+      setSearchParams({ brandId: String(id), memoryId, ramId });
+      return;
+    }
+
+    if (!e.target.checked && searchParams.get('brandId')) {
+      brandQuery = brandQuery
+          .split(',')
+          .filter((val) => val !== id.toString())
+          .join(',');
+      setSearchParams({ brandId: brandQuery, memoryId, ramId });
+      return;
+    }
+
+    if (!e.target.checked && !searchParams.get('brandId')) {
+      searchParams.delete('brandId');
+    }
   };
-
-  const isActive = activeBrand.includes(id);
 
   return (
     <div className={css.text_wrap}>
-      <span className={isActive ? css.active : css.brand} onClick={addBrandFilter}>
-        {name}
-      </span>
+      <input type="checkbox" defaultChecked={isActive} onChange={onChange} />
+      <span className={css.brand}>{name}</span>
     </div>
   );
 };

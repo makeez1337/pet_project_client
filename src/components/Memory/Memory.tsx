@@ -2,24 +2,47 @@ import React, { FC } from 'react';
 
 import { IMemory } from '../../interfaces/PhoneFieldsInterface';
 import css from './Memory.module.css';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { addMemory } from '../../store/slices/filterSlice';
+import { useSearchParams } from 'react-router-dom';
 
 const Memory: FC<IMemory> = ({ id, memory }) => {
-  const dispatch = useAppDispatch();
-  const { activeMemory } = useAppSelector((state) => state.filterReducer);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const addMemoryFilter = () => {
-    dispatch(addMemory(id));
+  const brandId = searchParams.get('brandId') || '';
+  const ramId = searchParams.get('ramId') || '';
+  let memoryQuery = searchParams.get('memoryId') || '';
+
+  const isActive = searchParams.get('memoryId')?.split(',').includes(id.toString()) as boolean;
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked && searchParams.get('memoryId')) {
+      memoryQuery += `,${id.toString()}`;
+      setSearchParams({ memoryId: memoryQuery, brandId, ramId });
+      return;
+    }
+
+    if (e.target.checked) {
+      setSearchParams({ memoryId: String(id), brandId, ramId });
+      return;
+    }
+
+    if (!e.target.checked && searchParams.get('memoryId')) {
+      memoryQuery = memoryQuery
+        .split(',')
+        .filter((val) => val !== id.toString())
+        .join(',');
+      setSearchParams({ memoryId: memoryQuery, brandId, ramId });
+      return;
+    }
+
+    if (!e.target.checked && !searchParams.get('memoryId')) {
+      searchParams.delete('memoryId');
+    }
   };
-
-  const isActive = activeMemory.includes(id);
 
   return (
     <div className={css.text_wrap}>
-      <span className={isActive ? css.active : css.memory} onClick={addMemoryFilter}>
-        {memory} Gb
-      </span>
+      <input type="checkbox" defaultChecked={isActive} onChange={onChange} />
+      <span className={css.memory}>{memory} Gb</span>
     </div>
   );
 };

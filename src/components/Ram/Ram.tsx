@@ -2,24 +2,47 @@ import React, { FC } from 'react';
 
 import { IRam } from '../../interfaces/PhoneFieldsInterface';
 import css from './Ram.module.css';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { addRam } from '../../store/slices/filterSlice';
+import { useSearchParams } from 'react-router-dom';
 
 const Ram: FC<IRam> = ({ id, ram }) => {
-  const dispatch = useAppDispatch();
-  const { activeRam } = useAppSelector((state) => state.filterReducer);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const addRamFilter = () => {
-    dispatch(addRam(id));
+  const brandId = searchParams.get('brandId') || '';
+  const memoryId = searchParams.get('memoryId') || '';
+  let ramQuery = searchParams.get('ramId') || '';
+
+  const isActive = searchParams.get('ramId')?.split(',').includes(id.toString()) as boolean;
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked && searchParams.get('ramId')) {
+      ramQuery += `,${id.toString()}`;
+      setSearchParams({ ramId: ramQuery, memoryId, brandId });
+      return;
+    }
+
+    if (e.target.checked) {
+      setSearchParams({ ramId: String(id), memoryId, brandId });
+      return;
+    }
+
+    if (!e.target.checked && searchParams.get('ramId')) {
+      ramQuery = ramQuery
+        .split(',')
+        .filter((val) => val !== id.toString())
+        .join(',');
+      setSearchParams({ ramId: ramQuery, memoryId, brandId });
+      return;
+    }
+
+    if (!e.target.checked && !searchParams.get('ramId')) {
+      searchParams.delete('ramId');
+    }
   };
-
-  const isActive = activeRam.includes(id);
 
   return (
     <div className={css.text_wrap}>
-      <span className={isActive ? css.active : css.ram} onClick={addRamFilter}>
-        {ram} Gb
-      </span>
+      <input type="checkbox" defaultChecked={isActive} onChange={onChange} />
+      <span className={css.ram}>{ram} Gb</span>
     </div>
   );
 };
