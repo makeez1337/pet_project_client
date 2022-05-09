@@ -2,19 +2,11 @@
     text-align: center;
 }
 
+input {
+    margin-right: 5px;
+}
+
 .brand {
     font-size: 18px;
 }
 
-.brand:hover {
-    cursor: pointer;
-}
-
-.active {
-    font-size: 18px;
-    text-decoration: underline;
-}
-
-.active:hover {
-    cursor: pointer;
-}
