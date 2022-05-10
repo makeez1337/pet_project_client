@@ -1,0 +1,27 @@
+.content_wrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 30px;
+}
+
+.btn_style {
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: orange;
+    font-weight: 700;
+    border: 1px solid black;
+    width: 175px;
+    height: 40px;
+}
+
+.btn_disable {
+    cursor: not-allowed;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 700;
+    border: 1px solid black;
+}
