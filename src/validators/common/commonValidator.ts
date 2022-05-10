@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-import { constants } from '../../constants/constants';
+import { constants } from '../../constants';
 
 export const commonValidator = {
   emailValidator: Joi.string().pattern(constants.emailRegexp).trim().required().messages({
