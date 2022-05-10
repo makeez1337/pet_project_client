@@ -1,7 +1,7 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useSearchParams } from 'react-router-dom';
+import { SyntheticEvent, useState } from 'react';
 
 import css from './Content.module.css';
 import './RangePriceSlider.css';
@@ -11,7 +11,7 @@ export default function RangePriceSlider() {
   const min = searchParams.get('gte') || 0;
   const max = searchParams.get('lte') || 45999;
 
-  const [value, setValue] = React.useState<number[]>([Number(min), Number(max)]);
+  const [value, setValue] = useState<number[]>([Number(min), Number(max)]);
 
   const brandId = searchParams.get('brandId') || '';
   const memoryId = searchParams.get('memoryId') || '';
@@ -24,7 +24,7 @@ export default function RangePriceSlider() {
     setValue(newValue as number[]);
   };
 
-  const handleChangeCommitted = (event: React.SyntheticEvent | Event, newValue: number | number[]) => {
+  const handleChangeCommitted = (event: SyntheticEvent | Event, newValue: number | number[]) => {
     const [gte, lte] = newValue as number[];
     setSearchParams({ gte: gte.toString(), lte: lte.toString(), ...searchParamsObj });
   };
