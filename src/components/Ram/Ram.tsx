@@ -11,19 +11,22 @@ const Ram: FC<IRam> = ({ id, ram }) => {
   const lte = searchParams.get('lte') || '45999';
   const brandId = searchParams.get('brandId') || '';
   const memoryId = searchParams.get('memoryId') || '';
+  const page = searchParams.get('page') || '1';
   let ramQuery = searchParams.get('ramId') || '';
+
+  const setParamsObj = { gte, lte, brandId, memoryId, page };
 
   const isActive = searchParams.get('ramId')?.split(',').includes(id.toString()) as boolean;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked && searchParams.get('ramId')) {
       ramQuery += `,${id.toString()}`;
-      setSearchParams({ ramId: ramQuery, memoryId, brandId, gte, lte });
+      setSearchParams({ ramId: ramQuery, ...setParamsObj });
       return;
     }
 
     if (e.target.checked) {
-      setSearchParams({ ramId: String(id), memoryId, brandId, gte, lte });
+      setSearchParams({ ramId: String(id), ...setParamsObj });
       return;
     }
 
@@ -32,7 +35,7 @@ const Ram: FC<IRam> = ({ id, ram }) => {
         .split(',')
         .filter((val) => val !== id.toString())
         .join(',');
-      setSearchParams({ ramId: ramQuery, memoryId, brandId, gte, lte });
+      setSearchParams({ ramId: ramQuery, ...setParamsObj });
       return;
     }
 
