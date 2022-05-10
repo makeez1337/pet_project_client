@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { logOutThunk, openLoginPrompt } from '../../store/slices/authSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { logOutThunk, openLoginPrompt } from '../../store';
 import login_logo from '../../images/login_logo.png';
 import shop_bucket from '../../images/shop_bucket.png';
 import css from './Header.module.css';
