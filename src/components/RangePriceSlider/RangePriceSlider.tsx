@@ -22,8 +22,10 @@ export default function RangePriceSlider() {
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
-    const gte = value[0];
-    const lte = value[1];
+  };
+
+  const handleChangeCommitted = (event: React.SyntheticEvent | Event, newValue: number | number[]) => {
+    const [gte, lte] = newValue as number[];
     setSearchParams({ gte: gte.toString(), lte: lte.toString(), ...searchParamsObj });
   };
 
@@ -32,7 +34,13 @@ export default function RangePriceSlider() {
       <hr />
       <div className={css.filter_describe}>Ціна:</div>
       <Box sx={{ width: 300 }}>
-        <Slider max={45999} value={value} onChange={handleChange} valueLabelDisplay="auto" />
+        <Slider
+          max={45999}
+          value={value}
+          onChangeCommitted={handleChangeCommitted}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+        />
       </Box>
     </div>
   );
