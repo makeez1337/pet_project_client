@@ -2,15 +2,15 @@ import React, { FC } from 'react';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { authValidator } from '../../validators/auth/authValidator';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { authValidator } from '../../validators';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   clearLoginError,
   loginThunk,
   openLoginPrompt,
   openRegistrationPrompt
-} from '../../store/slices/authSlice';
-import { IAuthResponse } from '../../interfaces/authInterface';
+} from '../../store';
+import { IAuthResponse } from '../../interfaces';
 import close_button from '../../images/close_button.png';
 import css from './LoginPrompt.module.css';
 
