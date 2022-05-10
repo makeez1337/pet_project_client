@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import { useAppSelector } from '../../hooks/reduxHooks';
+import { useAppSelector } from '../../hooks';
 import LoginPrompt from '../LoginPrompt/LoginPrompt';
 import RegistrationPrompt from '../RegistrationPrompt/RegistrationPrompt';
 import css from './Auth.module.css';
 
-const Auth = () => {
-  const { isLoginPromptOnScreen, isRegistrationPromptOnScreen, user } = useAppSelector(
+const Auth: FC = () => {
+  const { isLoginPromptOnScreen, isRegistrationPromptOnScreen } = useAppSelector(
     (state) => state.authReducer
   );
   return (
