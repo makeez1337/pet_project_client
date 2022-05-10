@@ -4,12 +4,11 @@ import css from './Pagination.module.css';
 import { useSearchParams } from 'react-router-dom';
 
 interface PaginationProps {
-  currentPage: null | number;
   totalPages: null | number;
   perPage: number | null;
 }
 
-const Pagination: FC<PaginationProps> = ({ totalPages, currentPage, perPage }) => {
+const Pagination: FC<PaginationProps> = ({ totalPages, perPage }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const gte = searchParams.get('gte') || '0';
