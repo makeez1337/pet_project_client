@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import baseURL, { Urls } from '../constants/urls';
-import { IAuthResponse } from '../interfaces/authInterface';
+import { IAuthResponse } from '../interfaces';
 
 const axiosService = axios.create({ baseURL, withCredentials: true });
 
