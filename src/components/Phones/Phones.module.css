@@ -5,3 +5,15 @@
     margin-left: 100px;
     margin-top: 20px;
 }
+
+.loading_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.loading {
+    font-size: 50px;
+    font-weight: 700;
+}
