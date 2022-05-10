@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { phoneService } from '../../services/phoneService';
-import { IPhone } from '../../interfaces/PhoneFieldsInterface';
+import { phoneService } from '../../services';
+import { IPhone } from '../../interfaces';
+import Pagination from '../Pagination/Pagination';
 import Phone from '../Phone/Phone';
 import css from './Phones.module.css';
-import Pagination from '../Pagination/Pagination';
 
 const Phones: FC = () => {
   const [phones, setPhones] = useState<IPhone[] | null>(null);
