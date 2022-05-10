@@ -11,19 +11,22 @@ const Brand: FC<IBrand> = ({ id, name }) => {
   const lte = searchParams.get('lte') || '45999';
   const memoryId = searchParams.get('memoryId') || '';
   const ramId = searchParams.get('ramId') || '';
+  const page = searchParams.get('page') || '1';
   let brandQuery = searchParams.get('brandId') || '';
+
+  const setParamsObj = { gte, lte, memoryId, ramId, page };
 
   const isActive = searchParams.get('brandId')?.split(',').includes(id.toString()) as boolean;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked && searchParams.get('brandId')) {
       brandQuery += `,${id.toString()}`;
-      setSearchParams({ brandId: brandQuery, memoryId, ramId, gte, lte });
+      setSearchParams({ brandId: brandQuery, ...setParamsObj });
       return;
     }
 
     if (e.target.checked) {
-      setSearchParams({ brandId: String(id), memoryId, ramId, gte, lte });
+      setSearchParams({ brandId: String(id), ...setParamsObj });
       return;
     }
 
@@ -32,7 +35,7 @@ const Brand: FC<IBrand> = ({ id, name }) => {
         .split(',')
         .filter((val) => val !== id.toString())
         .join(',');
-      setSearchParams({ brandId: brandQuery, memoryId, ramId, gte, lte });
+      setSearchParams({ brandId: brandQuery, ...setParamsObj });
       return;
     }
 
