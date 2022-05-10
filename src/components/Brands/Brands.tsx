@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
-import { brandService } from '../../services/brandService';
-import { IBrand } from '../../interfaces/PhoneFieldsInterface';
+import { brandService } from '../../services';
+import { IBrand } from '../../interfaces';
 import Brand from '../Brand/Brand';
-
 import css from './Brands.module.css';
 
-const Brands = () => {
+const Brands: FC = () => {
   const [brands, setBrands] = useState<IBrand[] | null>(null);
 
   useEffect(() => {
