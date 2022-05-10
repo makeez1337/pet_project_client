@@ -16,12 +16,15 @@ export default function RangePriceSlider() {
   const brandId = searchParams.get('brandId') || '';
   const memoryId = searchParams.get('memoryId') || '';
   const ramId = searchParams.get('ramId') || '';
+  const page = searchParams.get('page') || '1';
+
+  const searchParamsObj = { brandId, memoryId, ramId, page };
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
     const gte = value[0];
     const lte = value[1];
-    setSearchParams({ gte: gte.toString(), lte: lte.toString(), brandId, memoryId, ramId });
+    setSearchParams({ gte: gte.toString(), lte: lte.toString(), ...searchParamsObj });
   };
 
   return (
