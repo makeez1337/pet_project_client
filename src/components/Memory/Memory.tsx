@@ -11,19 +11,22 @@ const Memory: FC<IMemory> = ({ id, memory }) => {
   const lte = searchParams.get('lte') || '45999';
   const brandId = searchParams.get('brandId') || '';
   const ramId = searchParams.get('ramId') || '';
+  const page = searchParams.get('page') || '1';
   let memoryQuery = searchParams.get('memoryId') || '';
+
+  const setParamsObj = { gte, lte, brandId, ramId, page };
 
   const isActive = searchParams.get('memoryId')?.split(',').includes(id.toString()) as boolean;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked && searchParams.get('memoryId')) {
       memoryQuery += `,${id.toString()}`;
-      setSearchParams({ memoryId: memoryQuery, brandId, ramId, gte, lte });
+      setSearchParams({ memoryId: memoryQuery, ...setParamsObj });
       return;
     }
 
     if (e.target.checked) {
-      setSearchParams({ memoryId: String(id), brandId, ramId, gte, lte });
+      setSearchParams({ memoryId: String(id), ...setParamsObj });
       return;
     }
 
@@ -32,7 +35,7 @@ const Memory: FC<IMemory> = ({ id, memory }) => {
         .split(',')
         .filter((val) => val !== id.toString())
         .join(',');
-      setSearchParams({ memoryId: memoryQuery, brandId, ramId, gte, lte });
+      setSearchParams({ memoryId: memoryQuery, ...setParamsObj });
       return;
     }
 
@@ -40,7 +43,7 @@ const Memory: FC<IMemory> = ({ id, memory }) => {
       searchParams.delete('memoryId');
     }
   };
-
+  
   return (
     <div className={css.text_wrap}>
       <input type="checkbox" defaultChecked={isActive} onChange={onChange} />
