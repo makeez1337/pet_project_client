@@ -2,10 +2,10 @@ import React from 'react';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { authValidator } from '../../validators/auth/authValidator';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { IAuthResponse, IRegistrationForm } from '../../interfaces/authInterface';
-import { registrationThunk, switchToLoginPrompt } from '../../store/slices/authSlice';
+import { authValidator } from '../../validators';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { IAuthResponse, IRegistrationForm } from '../../interfaces';
+import { registrationThunk, switchToLoginPrompt } from '../../store';
 import close_button from '../../images/close_button.png';
 import css from './RegistrationPrompt.module.css';
 
@@ -68,7 +68,9 @@ const RegistrationPrompt = () => {
         <input type="password" placeholder={'Пароль'} {...register('password')} />
         {errors.password && <div className={css.error_msg}>{errors.password.message}</div>}
         <input type="password" placeholder={'Повторіть пароль'} {...register('repeatedPassword')} />
-        {errors.repeatedPassword && <div className={css.error_msg}>{errors.repeatedPassword.message}</div>}
+        {errors.repeatedPassword && (
+          <div className={css.error_msg}>{errors.repeatedPassword.message}</div>
+        )}
         <button className={css.btn}>Зареєструватись</button>
       </form>
       <div className={css.bottom_menu}>
