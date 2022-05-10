@@ -1,8 +1,8 @@
 import axiosService from './axiosService';
-
-import { Urls } from '../constants/urls';
 import { AxiosResponse } from 'axios';
-import { IRam } from '../interfaces/PhoneFieldsInterface';
+
+import { Urls } from '../constants';
+import { IRam } from '../interfaces';
 
 export const ramService = {
   getAll: async (): Promise<AxiosResponse<IRam[]>> => axiosService.get(Urls.Ram)
