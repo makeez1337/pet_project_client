@@ -17,6 +17,7 @@ export interface PhonePaginationResponse {
   perPage: number;
   count: number;
   rows: IPhone[];
+  totalPages: number;
 }
 
 export interface IBrand {
