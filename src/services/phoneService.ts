@@ -1,8 +1,8 @@
 import axiosService from './axiosService';
 
-import { Urls } from '../constants/urls';
+import { Urls } from '../constants';
 import { AxiosResponse } from 'axios';
-import { PhonePaginationResponse } from '../interfaces/PhoneFieldsInterface';
+import { PhonePaginationResponse } from '../interfaces';
 
 export const phoneService = {
   getByQuery: async (searchQuery: string): Promise<AxiosResponse<PhonePaginationResponse>> => {
