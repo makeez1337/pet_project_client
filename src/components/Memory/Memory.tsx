@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-
-import { IMemory } from '../../interfaces/PhoneFieldsInterface';
-import css from './Memory.module.css';
 import { useSearchParams } from 'react-router-dom';
+
+import { IMemory } from '../../interfaces';
+import css from './Memory.module.css';
 
 const Memory: FC<IMemory> = ({ id, memory }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,7 +43,7 @@ const Memory: FC<IMemory> = ({ id, memory }) => {
       searchParams.delete('memoryId');
     }
   };
-  
+
   return (
     <div className={css.text_wrap}>
       <input type="checkbox" defaultChecked={isActive} onChange={onChange} />
