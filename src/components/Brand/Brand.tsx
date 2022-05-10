@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { IBrand } from '../../interfaces/PhoneFieldsInterface';
+import { IBrand } from '../../interfaces';
 import css from './Brand.module.css';
 
 const Brand: FC<IBrand> = ({ id, name }) => {
