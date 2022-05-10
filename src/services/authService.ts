@@ -1,8 +1,8 @@
-import axiosService from './axiosService';
 import { AxiosResponse } from 'axios';
 
-import { Urls } from '../constants/urls';
-import { ILoginCredentials, IAuthResponse, IRegistrationForm } from '../interfaces/authInterface';
+import axiosService from './axiosService';
+import { Urls } from '../constants';
+import { ILoginCredentials, IAuthResponse, IRegistrationForm } from '../interfaces';
 
 export const authService = {
   registration: async (
