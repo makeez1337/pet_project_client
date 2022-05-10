@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { logOutThunk, openLoginPrompt } from '../../store/slices/authSlice';
