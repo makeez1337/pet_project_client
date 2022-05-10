@@ -1,13 +1,13 @@
 import axios, { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { authService } from '../../services/authService';
+import { authService } from '../../services';
 import {
   IAuthResponse,
   ILoginCredentials,
   IRegistrationForm
-} from '../../interfaces/authInterface';
-import { IUser } from '../../interfaces/userInterface';
+} from '../../interfaces';
+import { IUser } from '../../interfaces';
 
 export interface authPromptState {
   user: IUser | null;
