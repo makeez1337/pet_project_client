@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import Ram from '../Ram/Ram';
-import { IRam } from '../../interfaces/PhoneFieldsInterface';
-import { ramService } from '../../services/ramService';
+import { IRam } from '../../interfaces';
+import { ramService } from '../../services';
 import css from './RamMap.module.css';
 
 const RamMap = () => {
