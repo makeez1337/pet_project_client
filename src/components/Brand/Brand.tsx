@@ -1,13 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { IBrand } from '../../interfaces/PhoneFieldsInterface';
 import css from './Brand.module.css';
 
 const Brand: FC<IBrand> = ({ id, name }) => {
-
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const gte = searchParams.get('gte') || '0';
+  const lte = searchParams.get('lte') || '45999';
   const memoryId = searchParams.get('memoryId') || '';
   const ramId = searchParams.get('ramId') || '';
   let brandQuery = searchParams.get('brandId') || '';
@@ -17,21 +18,21 @@ const Brand: FC<IBrand> = ({ id, name }) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked && searchParams.get('brandId')) {
       brandQuery += `,${id.toString()}`;
-      setSearchParams({ brandId: brandQuery, memoryId, ramId });
+      setSearchParams({ brandId: brandQuery, memoryId, ramId, gte, lte });
       return;
     }
 
     if (e.target.checked) {
-      setSearchParams({ brandId: String(id), memoryId, ramId });
+      setSearchParams({ brandId: String(id), memoryId, ramId, gte, lte });
       return;
     }
 
     if (!e.target.checked && searchParams.get('brandId')) {
       brandQuery = brandQuery
-          .split(',')
-          .filter((val) => val !== id.toString())
-          .join(',');
-      setSearchParams({ brandId: brandQuery, memoryId, ramId });
+        .split(',')
+        .filter((val) => val !== id.toString())
+        .join(',');
+      setSearchParams({ brandId: brandQuery, memoryId, ramId, gte, lte });
       return;
     }
 

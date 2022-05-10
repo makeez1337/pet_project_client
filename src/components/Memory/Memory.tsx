@@ -7,6 +7,8 @@ import { useSearchParams } from 'react-router-dom';
 const Memory: FC<IMemory> = ({ id, memory }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const gte = searchParams.get('gte') || '0';
+  const lte = searchParams.get('lte') || '45999';
   const brandId = searchParams.get('brandId') || '';
   const ramId = searchParams.get('ramId') || '';
   let memoryQuery = searchParams.get('memoryId') || '';
@@ -16,12 +18,12 @@ const Memory: FC<IMemory> = ({ id, memory }) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked && searchParams.get('memoryId')) {
       memoryQuery += `,${id.toString()}`;
-      setSearchParams({ memoryId: memoryQuery, brandId, ramId });
+      setSearchParams({ memoryId: memoryQuery, brandId, ramId, gte, lte });
       return;
     }
 
     if (e.target.checked) {
-      setSearchParams({ memoryId: String(id), brandId, ramId });
+      setSearchParams({ memoryId: String(id), brandId, ramId, gte, lte });
       return;
     }
 
@@ -30,7 +32,7 @@ const Memory: FC<IMemory> = ({ id, memory }) => {
         .split(',')
         .filter((val) => val !== id.toString())
         .join(',');
-      setSearchParams({ memoryId: memoryQuery, brandId, ramId });
+      setSearchParams({ memoryId: memoryQuery, brandId, ramId, gte, lte });
       return;
     }
 
