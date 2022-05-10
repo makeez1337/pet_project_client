@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { IMemory } from '../../interfaces/PhoneFieldsInterface';
+import { IMemory } from '../../interfaces';
 import Memory from '../Memory/Memory';
-import { memoryService } from '../../services/memoryService';
+import { memoryService } from '../../services';
 import css from './MemoryMap.module.css';
 
 const MemoryMap: FC = () => {
