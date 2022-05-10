@@ -4,8 +4,8 @@ import Header from '../../components/Header/Header';
 import ServiceMenu from '../../components/ServiceMenu/ServiceMenu';
 import DiscountProducts from '../../components/DiscountProducts/DiscountProducts';
 import Auth from '../../components/Auth/Auth';
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { checkAuthThunk } from '../../store/slices/authSlice';
+import { useAppDispatch } from '../../hooks';
+import { checkAuthThunk } from '../../store';
 
 const IndexPage: FC = () => {
   const dispatch = useAppDispatch();
