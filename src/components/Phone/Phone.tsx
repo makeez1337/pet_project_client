@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import { constants } from '../../constants/constants';
-import { IPhone } from '../../interfaces/PhoneFieldsInterface';
+import { constants } from '../../constants';
+import { IPhone } from '../../interfaces';
 import css from './Phone.module.css';
 
 const Phone: FC<IPhone> = (props) => {
@@ -13,7 +13,7 @@ const Phone: FC<IPhone> = (props) => {
   return (
     <div className={css.content_wrap}>
       <div>
-        <img className={css.phoneImg} src={phoneImg} alt="phone image" />
+        <img className={css.phoneImg} src={phoneImg} alt="phone" />
       </div>
       <div>
         <span>{name}</span>
