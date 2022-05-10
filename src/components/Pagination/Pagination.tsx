@@ -1,18 +1,15 @@
 import React, { FC, useEffect } from 'react';
 
 import css from './Pagination.module.css';
-import {useLocation, useSearchParams} from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 interface PaginationProps {
-  currentPage: null | number;
   totalPages: null | number;
   perPage: number | null;
 }
 
-const Pagination: FC<PaginationProps> = ({ totalPages, currentPage, perPage }) => {
+const Pagination: FC<PaginationProps> = ({ totalPages, perPage }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const {search} = useLocation();
 
   const gte = searchParams.get('gte') || '0';
   const lte = searchParams.get('lte') || '45999';
@@ -40,17 +37,17 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage, perPage }) =
     if (totalPages && perPage === 0) {
       setSearchParams({ page: '1', ...setParamsObj });
     }
-  },[totalPages, perPage]);
+  }, [totalPages, perPage]);
 
   return (
     <div className={css.content_wrap}>
       <button
         onClick={moveToPreviousPage}
-        disabled={!!isPageFirst || !totalPages}
+        disabled={isPageFirst || !totalPages}
         className={css.btn_style}>
         ПОПЕРЕДНЯ СТОРІНКА
       </button>
-      <button onClick={moveToNextPage} disabled={!!isPageLast} className={css.btn_style}>
+      <button onClick={moveToNextPage} disabled={isPageLast} className={css.btn_style}>
         НАСТУПНА СТОРІНКА
       </button>
     </div>
