@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-
-import { IRam } from '../../interfaces/PhoneFieldsInterface';
-import css from './Ram.module.css';
 import { useSearchParams } from 'react-router-dom';
+
+import { IRam } from '../../interfaces';
+import css from './Ram.module.css';
 
 const Ram: FC<IRam> = ({ id, ram }) => {
   const [searchParams, setSearchParams] = useSearchParams();
