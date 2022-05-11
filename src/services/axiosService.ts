@@ -20,7 +20,7 @@ axiosService.interceptors.response.use(
       try {
         originalConfig._isRetry = true;
         const response = await axios.get<IAuthResponse>(`${Urls.Auth}${Urls.Refresh}`, {
-          withCredentials: true
+          withCredentials: true,
         });
         localStorage.setItem('accessToken', response.data.accessToken);
         return axiosService.request(originalConfig);
