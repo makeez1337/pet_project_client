@@ -15,7 +15,7 @@ const Catalog = () => {
     if (localStorage.getItem('accessToken')) {
       dispatch(checkAuthThunk());
     }
-  });
+  },[]);
 
   return (
     <div>
