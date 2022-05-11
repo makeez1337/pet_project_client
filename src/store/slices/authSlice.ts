@@ -138,6 +138,10 @@ export const authSlice = createSlice({
       state.isAuth = true;
       state.user = action.payload?.user as IUser;
     });
+    builder.addCase(registrationThunk.rejected, (state, action) => {
+      state.isAuth = false;
+      state.user = null;
+    })
 
     // loginThunk
     builder.addCase(loginThunk.fulfilled, (state, action) => {
