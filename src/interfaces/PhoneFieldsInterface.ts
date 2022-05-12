@@ -6,10 +6,22 @@ export interface IPhone {
   ramId: number;
   camera: number;
   price: number;
-  img: string;
   brandId: number;
+  img: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface IPhoneFormData {
+  name: string;
+  img: Array<string | Blob>;
+  description: string;
+  memoryId: string;
+  processor: string;
+  ramId: string;
+  camera: string;
+  price: string;
+  brandId: string;
 }
 
 export interface PhonePaginationResponse {
