@@ -22,8 +22,12 @@ const Header: FC = () => {
   const { search } = useLocation();
 
   const onClick = () => {
+    if (!user) {
+      window.alert('Потрібно авторизуватись');
+      return;
+    }
     if (user?.role !== 'admin') {
-      window.alert('You dont have access');
+      window.alert('У вас немає доступу');
     }
   };
 
@@ -44,14 +48,12 @@ const Header: FC = () => {
         <div>
           {user?.role === 'admin' ? (
             <Link to={'/admin'}>
-              <button className={css.admin_button}>
-                ADMIN PANEL
-              </button>
+              <button className={css.admin_button}>ADMIN PANEL</button>
             </Link>
           ) : (
-              <button onClick={onClick} className={css.admin_button}>
-                ADMIN PANEL
-              </button>
+            <button onClick={onClick} className={css.admin_button}>
+              ADMIN PANEL
+            </button>
           )}
         </div>
         <div className={css.login_logo}>
