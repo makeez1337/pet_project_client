@@ -49,11 +49,9 @@ const Header: FC = () => {
               </button>
             </Link>
           ) : (
-            <Link to={''}>
               <button onClick={onClick} className={css.admin_button}>
                 ADMIN PANEL
               </button>
-            </Link>
           )}
         </div>
         <div className={css.login_logo}>
