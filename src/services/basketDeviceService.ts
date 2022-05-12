@@ -2,7 +2,7 @@ import axiosService from './axiosService';
 import { AxiosResponse } from 'axios';
 
 import { Urls } from '../constants';
-import { IBasketDeviceResponse } from '../interfaces/basketDeviceInterface';
+import { IBasketDeviceResponse } from '../interfaces';
 
 export const basketDeviceService = {
   createBasketDevice: async (phoneId: number): Promise<AxiosResponse<IBasketDeviceResponse>> => {
