@@ -3,12 +3,21 @@ import React, { FC } from 'react';
 import { constants } from '../../constants';
 import { IPhone } from '../../interfaces';
 import css from './Phone.module.css';
+import { basketDeviceService } from '../../services/basketDeviceService';
 
 const Phone: FC<IPhone> = (props) => {
-  const { name, img, price } = props;
+  const { name, img, price, id } = props;
 
   const splitedImg = img.split('/')[3];
   const phoneImg = `${constants.baseImgUrl}${splitedImg}`;
+
+  const addItem = async () => {
+    const response = await basketDeviceService.createBasketDevice(id);
+
+    if (response.data) {
+      window.alert('Товар добавлений в корзину')
+    }
+  };
 
   return (
     <div className={css.content_wrap}>
@@ -21,8 +30,8 @@ const Phone: FC<IPhone> = (props) => {
       <div>
         <span>Ціна: {price}</span>
       </div>
-      <button className={css.btn_style}>
-        Замовити
+      <button onClick={addItem} className={css.btn_style}>
+        Добавити
       </button>
     </div>
   );
