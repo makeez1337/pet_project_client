@@ -30,7 +30,7 @@ const Phone: FC<IPhone> = (props) => {
         <span>{name}</span>
       </div>
       <div>
-        <span>Ціна: {price}</span>
+        <span>Ціна: {price.toString().replace(constants.numberWithCommas, ',')}</span>
       </div>
       <button onClick={addItem} className={css.btn_style}>
         Добавити
