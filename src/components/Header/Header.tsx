@@ -35,6 +35,11 @@ const Header: FC = () => {
       {user && <div className={css.user_email}>{user.email}</div>}
       <div className={css.right_side}>
         <h2>Контакти</h2>
+        <div>
+          <button className={css.admin_button}>
+            <Link to={'/admin'}>ADMIN PANEL</Link>
+          </button>
+        </div>
         <div className={css.login_logo}>
           <img src={login_logo} alt="login_logo" />
           {isCheckAuthLoading ? (
