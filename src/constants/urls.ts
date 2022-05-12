@@ -10,7 +10,8 @@ export enum Urls {
   Refresh = '/refresh',
   Logout = '/logout',
   Phones = '/phones',
-  Pagination = '/pagination'
+  Pagination = '/pagination',
+  BasketDevice = '/basketDevice'
 }
 
 export default baseURL;
