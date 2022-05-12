@@ -62,3 +62,11 @@
 .user_email {
     color: #bfbfbf;
 }
+
+.admin_button {
+    padding: 7px;
+    background-color: red;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 3px;
+}
