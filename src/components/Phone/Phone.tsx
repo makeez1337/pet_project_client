@@ -21,6 +21,9 @@ const Phone: FC<IPhone> = (props) => {
       <div>
         <span>Ціна: {price}</span>
       </div>
+      <button className={css.btn_style}>
+        Замовити
+      </button>
     </div>
   );
 };
