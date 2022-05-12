@@ -13,6 +13,7 @@ export interface authPromptState {
   user: IUser | null;
   isAuth: boolean;
   isCheckAuthLoading: boolean;
+  authStatus: string;
   loginError: string | null | undefined;
 
   isLoginPromptOnScreen: boolean;
@@ -27,6 +28,7 @@ const initialState: authPromptState = {
   user: null,
   isAuth: false,
   isCheckAuthLoading: false,
+  authStatus: '',
   loginError: null,
 
   isLoginPromptOnScreen: false,
@@ -82,7 +84,6 @@ export const checkAuthThunk = createAsyncThunk(
       return response.data;
     } catch (e) {
       if (axios.isAxiosError(e)) {
-        console.log('error message: ', e.response?.data);
         return rejectWithValue(e.response?.data);
       }
       if (e instanceof Error) {
@@ -160,15 +161,18 @@ export const authSlice = createSlice({
     builder.addCase(checkAuthThunk.pending, (state, action) => {
       state.isCheckAuthLoading = true;
       state.user = null;
+      state.authStatus = 'pending';
       state.isAuth = false;
     });
     builder.addCase(checkAuthThunk.fulfilled, (state, action) => {
       state.isCheckAuthLoading = false;
       state.user = action.payload?.user as IUser;
+      state.authStatus = 'fulfilled';
       state.isAuth = true;
     });
     builder.addCase(checkAuthThunk.rejected, (state, action) => {
       state.isCheckAuthLoading = false;
+      state.authStatus = 'rejected';
       state.user = null;
       state.isAuth = false;
     })
