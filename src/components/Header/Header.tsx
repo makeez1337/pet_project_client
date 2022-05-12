@@ -21,7 +21,7 @@ const Header: FC = () => {
 
   const { search } = useLocation();
 
-  const onClick = () => {
+  const forbidLinkToAdminPage = () => {
     if (!user) {
       window.alert('Потрібно авторизуватись');
       return;
@@ -30,6 +30,10 @@ const Header: FC = () => {
       window.alert('У вас немає доступу');
     }
   };
+
+  const basketAlert = () => {
+    window.alert('Потрібно авторизуватись');
+  }
 
   return (
     <div className={css.header_wrap}>
@@ -51,7 +55,7 @@ const Header: FC = () => {
               <button className={css.admin_button}>ADMIN PANEL</button>
             </Link>
           ) : (
-            <button onClick={onClick} className={css.admin_button}>
+            <button onClick={forbidLinkToAdminPage} className={css.admin_button}>
               ADMIN PANEL
             </button>
           )}
@@ -74,7 +78,13 @@ const Header: FC = () => {
         </div>
         <div className={css.shop_bucket_image}>
           <img src={shop_bucket} alt="shop_bucket" />
-          <div className={css.shop_bucket}>Корзина</div>
+          <div className={css.shop_bucket}>
+            {user ? (
+              <Link to={'/basket'}>Корзина</Link>
+            ) : (
+              <span onClick={basketAlert}>Корзина</span>
+            )}
+          </div>
         </div>
       </div>
     </div>
