@@ -21,6 +21,12 @@ const Header: FC = () => {
 
   const { search } = useLocation();
 
+  const onClick = () => {
+    if (user?.role !== 'admin') {
+      window.alert('You dont have access');
+    }
+  };
+
   return (
     <div className={css.header_wrap}>
       <div className={css.left_side}>
@@ -36,9 +42,19 @@ const Header: FC = () => {
       <div className={css.right_side}>
         <h2>Контакти</h2>
         <div>
-          <button className={css.admin_button}>
-            <Link to={'/admin'}>ADMIN PANEL</Link>
-          </button>
+          {user?.role === 'admin' ? (
+            <Link to={'/admin'}>
+              <button className={css.admin_button}>
+                ADMIN PANEL
+              </button>
+            </Link>
+          ) : (
+            <Link to={''}>
+              <button onClick={onClick} className={css.admin_button}>
+                ADMIN PANEL
+              </button>
+            </Link>
+          )}
         </div>
         <div className={css.login_logo}>
           <img src={login_logo} alt="login_logo" />
