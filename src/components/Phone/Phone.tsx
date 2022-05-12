@@ -12,9 +12,11 @@ const Phone: FC<IPhone> = (props) => {
   const phoneImg = `${constants.baseImgUrl}${splitedImg}`;
 
   const addItem = async () => {
-    const response = await basketDeviceService.createBasketDevice(id);
+    const response = await basketDeviceService.createBasketDevice(id).catch(e => {
+      window.alert('Потрібно авторизуватись');
+    })
 
-    if (response.data) {
+    if (response?.data) {
       window.alert('Товар добавлений в корзину')
     }
   };
