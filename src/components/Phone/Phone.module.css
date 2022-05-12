@@ -9,9 +9,16 @@
     border-radius: 5px;
     padding: 10px;
     font-weight: 700;
-    height: 357px;
+    height: 375px;
 }
 
 .content_wrap:hover {
     cursor: pointer;
+}
+
+.btn_style {
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: 700;
+    color: red;
 }
