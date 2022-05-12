@@ -2,11 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { authService } from '../../services';
-import {
-  IAuthResponse,
-  ILoginCredentials,
-  IRegistrationForm
-} from '../../interfaces';
+import { IAuthResponse, ILoginCredentials, IRegistrationForm } from '../../interfaces';
 import { IUser } from '../../interfaces';
 
 export interface authPromptState {
@@ -142,7 +138,7 @@ export const authSlice = createSlice({
     builder.addCase(registrationThunk.rejected, (state, action) => {
       state.isAuth = false;
       state.user = null;
-    })
+    });
 
     // loginThunk
     builder.addCase(loginThunk.fulfilled, (state, action) => {
@@ -175,7 +171,7 @@ export const authSlice = createSlice({
       state.authStatus = 'rejected';
       state.user = null;
       state.isAuth = false;
-    })
+    });
 
     // logOutThunk
     builder.addCase(logOutThunk.fulfilled, (state, action) => {
