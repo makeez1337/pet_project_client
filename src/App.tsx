@@ -5,6 +5,7 @@ import './index.css';
 import IndexPage from './pages/IndexPage/IndexPage';
 import Catalog from './pages/Catalog/Catalog';
 import Admin from './pages/Admin/Admin';
+import Basket from './pages/Basket/Basket';
 
 const App: FC = () => {
   return (
@@ -14,6 +15,8 @@ const App: FC = () => {
       <Route path={'catalog'} element={<Catalog />} />
 
       <Route path={'admin'} element={<Admin />} />
+
+      <Route path={'basket'} element={<Basket />} />
     </Routes>
   );
 };
