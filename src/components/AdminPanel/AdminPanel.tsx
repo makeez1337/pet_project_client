@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import css from './AdminPanel.module.css';
 import { phoneService } from '../../services';
@@ -32,10 +32,12 @@ const AdminPanel: FC = () => {
       })
       .catch((e) => {
         if (axios.isAxiosError(e)) {
-          const { data: { message } } = e.response as AxiosResponse;
+          const {
+            data: { message }
+          } = e.response as AxiosResponse;
           setErr({ message });
           setPhone(null);
-        }else {
+        } else {
           setErr(e.message);
         }
       });
