@@ -4,6 +4,7 @@
     text-align: center;
     margin-top: 50px;
     flex-direction: column;
+    font-weight: 700;
 }
 
 .header {
@@ -17,4 +18,8 @@
     justify-content: center;
     gap: 50px;
     margin-top: 20px;
+}
+
+.clr_red {
+    color: red;
 }
