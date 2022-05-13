@@ -1,20 +1,43 @@
-import React, { FC } from 'react';
-import { IBasketDevicesCountResponse } from '../../interfaces';
+import React, { Dispatch, FC, SetStateAction } from 'react';
+import { IBasketDevicesCountResponse, IPhone } from '../../interfaces';
 
-import css from './BasketItem.module.css';
+import minus_button from '../../images/minus_button.png';
 import { constants } from '../../constants';
+import css from './BasketItem.module.css';
+import { basketDeviceService } from '../../services/basketDeviceService';
+import { useAppSelector } from '../../hooks';
 
-const BasketItem: FC<IBasketDevicesCountResponse> = ({ count, totalPrice, phone }) => {
-  const { img } = phone;
+type BasketItemProps = {
+  count: string;
+  totalPrice: number;
+  phone: IPhone;
+  setIsDeleted: Dispatch<SetStateAction<boolean | null>>;
+};
+
+const BasketItem: FC<BasketItemProps> = ({ count, totalPrice, phone, setIsDeleted }) => {
+  const { user } = useAppSelector((state) => state.authReducer);
+
+  const { img, name, id } = phone;
 
   const splitedImg = img.split('/')[3];
   const phoneImg = `${constants.baseImgUrl}${splitedImg}`;
 
+  const deleteItem = () => {
+    setIsDeleted(false);
+    basketDeviceService
+      .deleteItemByParams(id, user?.id as number)
+      .then((res) => {
+        console.log(res.data);
+        setIsDeleted(true);
+      })
+      .catch((e) => setIsDeleted(false));
+  };
+
   return (
     <div className={css.content_wrap}>
-      <div>{phone.name}</div>
+      <div>{name}</div>
       <div>
-        <img className={css.img} src={phoneImg} alt={phone.name} />
+        <img className={css.img} src={phoneImg} alt={name} />
       </div>
       <div>
         <span>
@@ -29,6 +52,9 @@ const BasketItem: FC<IBasketDevicesCountResponse> = ({ count, totalPrice, phone 
           </span>{' '}
           грн
         </span>
+      </div>
+      <div>
+        <img onClick={deleteItem} className={css.minus_btn} src={minus_button} alt="" />
       </div>
     </div>
   );
