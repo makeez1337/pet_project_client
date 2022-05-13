@@ -1,10 +1,10 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
-import { IBasketDevicesCountResponse, IPhone } from '../../interfaces';
+import {  IPhone } from '../../interfaces';
 
 import minus_button from '../../images/minus_button.png';
 import { constants } from '../../constants';
 import css from './BasketItem.module.css';
-import { basketDeviceService } from '../../services/basketDeviceService';
+import { basketDeviceService } from '../../services';
 import { useAppSelector } from '../../hooks';
 
 type BasketItemProps = {
