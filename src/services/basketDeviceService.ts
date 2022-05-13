@@ -10,5 +10,8 @@ export const basketDeviceService = {
   },
   getDevicesByUserId: (userId: number): Promise<AxiosResponse<IBasketDevicesCountResponse[]>> => {
     return axiosService.get(`${Urls.BasketDevice}/${userId}`);
+  },
+  deleteItemByParams: (phoneId: number, userId: number): Promise<AxiosResponse<number>> => {
+    return axiosService.delete(`${Urls.BasketDevice}`, { data: { phoneId, userId } });
   }
 };
