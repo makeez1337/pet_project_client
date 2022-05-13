@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { useAppSelector } from '../../hooks';
 import { constants } from '../../constants';
-import { basketDeviceService } from '../../services/basketDeviceService';
+import { basketDeviceService } from '../../services';
 import { IBasketDevicesCountResponse } from '../../interfaces';
 import BasketItem from '../BasketItem/BasketItem';
 import css from './BasketItems.module.css';
@@ -36,6 +36,7 @@ const BasketItems: FC = () => {
         <h1 className={css.header}>КОРЗИНА:</h1>
       </div>
       <div className={css.basket_item_wrap}>
+        {!basketItems.length && <div>Корзина пуста</div>}
         {basketItems &&
           basketItems.map((value) => (
             <BasketItem key={value.phone.id} {...value} setIsDeleted={setIsDeleted} />
