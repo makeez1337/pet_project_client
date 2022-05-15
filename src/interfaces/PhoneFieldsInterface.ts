@@ -12,6 +12,20 @@ export interface IPhone {
   updatedAt: string;
 }
 
+export interface IPhoneGroupBy {
+  'phone.id': number;
+  'phone.name': string;
+  'phone.description': string;
+  'phone.memoryId': number;
+  'phone.ramId': number;
+  'phone.camera': number;
+  'phone.price': number;
+  'phone.brandId': number;
+  'phone.img': string;
+  'phone.createdAt': string;
+  'phone.updatedAt': string;
+}
+
 export interface IPhoneFormData {
   name: string;
   img: Array<string | Blob>;
