@@ -10,6 +10,7 @@
     padding: 10px;
     font-weight: 700;
     height: 375px;
+    position: relative;
 }
 
 .content_wrap:hover {
@@ -21,4 +22,11 @@
     border-radius: 3px;
     font-weight: 700;
     color: red;
+}
+
+.dlt_circle {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: -17px;
 }
