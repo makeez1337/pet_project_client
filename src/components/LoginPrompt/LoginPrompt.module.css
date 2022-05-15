@@ -35,6 +35,7 @@
     margin-top: -1000px;
     text-align: center;
     transition: 1.5s;
+    z-index: 5;
 }
 
 .content_wrap_switch {
