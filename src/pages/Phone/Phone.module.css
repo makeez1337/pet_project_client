@@ -66,3 +66,12 @@
     text-align: center;
     border-radius: 5px;
 }
+
+.price_wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.clr_red {
+    color: red;
+}
