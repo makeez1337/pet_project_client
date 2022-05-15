@@ -1,4 +1,5 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { constants } from '../../constants';
 import { IPhone } from '../../interfaces';
@@ -38,8 +39,14 @@ const Phone: FC<PhoneProps> = (props) => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const navigateToSinglePhone = () => {
+    navigate(`${id}`);
+  };
+
   return (
-    <div className={css.content_wrap}>
+    <div onClick={navigateToSinglePhone} className={css.content_wrap}>
       {user?.role === 'admin' && (
         <div>
           <img onClick={deletePhone} className={css.dlt_circle} src={delete_circle} alt="" />
