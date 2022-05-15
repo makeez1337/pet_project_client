@@ -46,14 +46,14 @@ const Phone: FC<PhoneProps> = (props) => {
   };
 
   return (
-    <div onClick={navigateToSinglePhone} className={css.content_wrap}>
+    <div className={css.content_wrap}>
       {user?.role === 'admin' && (
         <div>
           <img onClick={deletePhone} className={css.dlt_circle} src={delete_circle} alt="" />
         </div>
       )}
       <div>
-        <img className={css.phoneImg} src={phoneImg} alt="phone" />
+        <img onClick={navigateToSinglePhone} className={css.phoneImg} src={phoneImg} alt="phone" />
       </div>
       <div>
         <span>{name}</span>
