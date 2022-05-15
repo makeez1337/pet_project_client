@@ -1,4 +1,4 @@
-import { IPhone } from './PhoneFieldsInterface';
+import { IPhoneGroupBy } from './PhoneFieldsInterface';
 
 export interface IBasketDeviceResponse {
   id: number;
@@ -8,8 +8,8 @@ export interface IBasketDeviceResponse {
   updatedAt: string;
 }
 
-export interface IBasketDevicesCountResponse {
+export interface IBasketDevicesCountResponse extends IPhoneGroupBy {
+  id: number;
   count: string;
   totalPrice: number;
-  phone: IPhone;
 }
