@@ -4,6 +4,7 @@ export interface IPhone {
   description: string;
   memoryId: number;
   ramId: number;
+  processor: string;
   camera: number;
   price: number;
   brandId: number;
@@ -12,12 +13,19 @@ export interface IPhone {
   updatedAt: string;
 }
 
+export interface IPhoneJoin extends IPhone {
+  brand: IBrand;
+  ram: IRam;
+  memory: IMemory;
+}
+
 export interface IPhoneGroupBy {
   'phone.id': number;
   'phone.name': string;
   'phone.description': string;
   'phone.memoryId': number;
   'phone.ramId': number;
+  'phone.processor': string;
   'phone.camera': number;
   'phone.price': number;
   'phone.brandId': number;
