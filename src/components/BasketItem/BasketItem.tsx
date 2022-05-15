@@ -24,7 +24,6 @@ const BasketItem: FC<BasketItemProps> = (props) => {
     basketDeviceService
       .deleteItemByParams(id, user?.id as number)
       .then((res) => {
-        console.log(res.data);
         setIsDeleted(true);
       })
       .catch((e) => setIsDeleted(false));
