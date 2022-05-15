@@ -8,10 +8,15 @@ export const basketDeviceService = {
   createBasketDevice: async (phoneId: number): Promise<AxiosResponse<IBasketDeviceResponse>> => {
     return axiosService.post(`${Urls.BasketDevice}/addItem`, { phoneId });
   },
-  getDevicesByUserId: (userId: number): Promise<AxiosResponse<IBasketDevicesCountResponse[]>> => {
+  getDevicesByUserId: async (
+    userId: number
+  ): Promise<AxiosResponse<IBasketDevicesCountResponse[]>> => {
     return axiosService.get(`${Urls.BasketDevice}/${userId}`);
   },
-  deleteItemByParams: (phoneId: number, userId: number): Promise<AxiosResponse<number>> => {
+  deleteItemByParams: async (phoneId: number, userId: number): Promise<AxiosResponse<number>> => {
     return axiosService.delete(`${Urls.BasketDevice}`, { data: { phoneId, userId } });
+  },
+  confirmPurchase: async (email: string, userId: number): Promise<AxiosResponse<string>> => {
+    return axiosService.post(`${Urls.BasketDevice}/confirmPurchase`, { email, userId });
   }
 };
