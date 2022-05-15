@@ -4,7 +4,6 @@ export * from './BasketItems/BasketItems';
 export * from './BasketItem/BasketItem';
 export * from './Brand/Brand';
 export * from './Brands/Brands';
-export * from './DiscountProducts/DiscountProducts';
 export * from './FilterMenu/FilterMenu';
 export * from './Header/Header';
 export * from './LoginPrompt/LoginPrompt';
