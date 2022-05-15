@@ -29,7 +29,16 @@ const BasketItems: FC = () => {
   }, [authStatus, isDeleted]);
 
   const submitPurchase = async () => {
-    await basketDeviceService.confirmPurchase(user?.email as string, user?.id as number);
+    setIsDeleted(false);
+    try {
+      await basketDeviceService.confirmPurchase(user?.email as string, user?.id as number);
+      await basketDeviceService.deleteAllByBasketId(user?.id as number);
+      setIsDeleted(true);
+      window.alert('Замовлення прийняте, вам прийшов лист на почту!')
+    } catch (e) {
+      setIsDeleted(false);
+      throw e;
+    }
   };
 
   return (
