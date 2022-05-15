@@ -1,0 +1,51 @@
+.content_wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.box {
+    width: 800px;
+    height: 400px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    display: flex;
+}
+
+.text_wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.text_up {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f6f6f6;
+    font-family: 'Roboto Slab', sans-serif;
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+.text_down {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f6f6f6;
+    font-family: 'Roboto Slab', sans-serif;
+    margin-top: 25px;
+    margin-left: 50px;
+}
+
+.text_down:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.phoneImg {
+    margin-left: 300px;
+    margin-top: 50px;
+}
+
+.phoneImg:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
