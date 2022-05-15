@@ -9,6 +9,9 @@ export const phoneService = {
     return axiosService.get(`${Urls.Phones}${searchQuery}`);
   },
   create: async (data: FormData): Promise<AxiosResponse<IPhone>> => {
-    return axiosService.post(`${Urls.Phones}`, data);
+    return axiosService.post(Urls.Phones, data);
+  },
+  deleteById: (id: number): Promise<AxiosResponse<number>> => {
+    return axiosService.delete(Urls.Phones, { data: { id } });
   }
 };
