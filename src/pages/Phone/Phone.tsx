@@ -47,13 +47,20 @@ const Phone = () => {
         </div>
         <div className={css.description_menu}>
           <div className={css.left_menu}>
-            <img
-              className={css.img}
-              src={`${constants.baseImgUrl}${splittedImg}`}
-              alt={phone?.name}
-            />
+            {splittedImg && (
+              <img
+                className={css.img}
+                src={`${constants.baseImgUrl}${splittedImg}`}
+                alt={phone?.name}
+              />
+            )}
             <div className={css.price_wrap}>
-              <span className={css.description_header}>Ціна: <span className={css.clr_red}>{phone?.price.toString().replace(constants.numberWithCommas, ',')}</span></span>
+              <span className={css.description_header}>
+                Ціна:{' '}
+                <span className={css.clr_red}>
+                  {phone?.price.toString().replace(constants.numberWithCommas, ',')}
+                </span>
+              </span>
             </div>
             <div className={css.btn_wrap}>
               <button onClick={addItem} className={css.btn}>
