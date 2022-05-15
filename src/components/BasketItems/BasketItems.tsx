@@ -21,14 +21,16 @@ const BasketItems: FC = () => {
         setBasketItems(res.data);
 
         const allAmount = res.data.reduce((previousValue, currentValue) => {
-          return previousValue + (currentValue.totalPrice * Number(currentValue.count));
+          return previousValue + currentValue.totalPrice * Number(currentValue.count);
         }, 0);
         setAllAmount(allAmount);
       });
     }
   }, [authStatus, isDeleted]);
 
-  console.log(!!allAmount);
+  const submitPurchase = async () => {
+    await basketDeviceService.confirmPurchase(user?.email as string, user?.id as number);
+  };
 
   return (
     <div className={css.header_wrap}>
@@ -39,15 +41,20 @@ const BasketItems: FC = () => {
         {!basketItems.length && <div>Корзина пуста</div>}
         {basketItems &&
           basketItems.map((value) => (
-            <BasketItem key={value.phone.id} {...value} setIsDeleted={setIsDeleted} />
+            <BasketItem key={value?.id} {...value} setIsDeleted={setIsDeleted} />
           ))}
         {!!allAmount && (
           <div>
             Загальна вартість:
             <span className={css.clr_red}>
-               {allAmount.toString().replace(constants.numberWithCommas, ',')}
+              {allAmount.toString().replace(constants.numberWithCommas, ',')}
             </span>{' '}
             грн
+            <div>
+              <button onClick={submitPurchase} className={css.btn}>
+                Підтвердити замовлення
+              </button>
+            </div>
           </div>
         )}
       </div>
