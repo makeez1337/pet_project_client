@@ -18,5 +18,8 @@ export const basketDeviceService = {
   },
   confirmPurchase: async (email: string, userId: number): Promise<AxiosResponse<string>> => {
     return axiosService.post(`${Urls.BasketDevice}/confirmPurchase`, { email, userId });
+  },
+  deleteAllByBasketId: async (userId: number): Promise<AxiosResponse<number>> => {
+    return axiosService.delete(`${Urls.BasketDevice}/all`, { data: { userId } });
   }
 };
