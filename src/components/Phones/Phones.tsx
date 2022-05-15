@@ -14,6 +14,8 @@ const Phones: FC = () => {
   const [totalPages, setTotalPages] = useState<number | null>(null);
   const [perPage, setPerPage] = useState<number | null>(null);
 
+  const [isDeleted, setIsDeleted] = useState<boolean | null>(null);
+
   const { search } = useLocation();
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const Phones: FC = () => {
       setPhones(res.data.rows);
       setIsLoading(false);
     });
-  }, [search]);
+  }, [search, isDeleted]);
 
   return (
     <div className={css.content_wrap}>
@@ -34,7 +36,7 @@ const Phones: FC = () => {
         </div>
       ) : null}
       {phones?.map((phone) => (
-        <Phone key={phone.id} {...phone} />
+        <Phone key={phone.id} {...phone} setIsDeleted={setIsDeleted} />
       ))}
       <Pagination totalPages={totalPages} perPage={perPage} />
     </div>
