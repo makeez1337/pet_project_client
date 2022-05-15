@@ -1,0 +1,68 @@
+.content_wrap {
+    display: flex;
+    margin-top: 50px;
+    font-weight: 700;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name_style {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 25px;
+}
+
+.img {
+    width: 400px;
+    height: 400px;
+    margin-top: 10px;
+}
+
+.description_menu {
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.left_menu {
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.right_menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 230px;
+    justify-content: center;
+    text-align: center;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.description_text {
+    font-family: "Droid Sans", serif;
+    font-size: 15px;
+}
+
+.description_header {
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 20px;
+}
+
+.btn_wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.btn {
+    padding: 7px;
+    background-color: orange;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 5px;
+}
