@@ -98,9 +98,6 @@ const LoginPrompt: FC = () => {
         </div>
         <div className={css.bottom_menu}>
           <div>
-            <span>Забули пароль</span>
-          </div>
-          <div>
             <span className={css.registration_button} onClick={openRegistration}>
               Зареєструватись
             </span>
