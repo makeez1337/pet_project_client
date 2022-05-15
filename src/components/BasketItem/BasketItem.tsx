@@ -1,23 +1,20 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
-import {  IPhone } from '../../interfaces';
 
 import minus_button from '../../images/minus_button.png';
 import { constants } from '../../constants';
-import css from './BasketItem.module.css';
+import { IBasketDevicesCountResponse } from '../../interfaces';
 import { basketDeviceService } from '../../services';
 import { useAppSelector } from '../../hooks';
+import css from './BasketItem.module.css';
 
-type BasketItemProps = {
-  count: string;
-  totalPrice: number;
-  phone: IPhone;
+interface BasketItemProps extends IBasketDevicesCountResponse {
   setIsDeleted: Dispatch<SetStateAction<boolean | null>>;
-};
+}
 
-const BasketItem: FC<BasketItemProps> = ({ count, totalPrice, phone, setIsDeleted }) => {
+const BasketItem: FC<BasketItemProps> = (props) => {
   const { user } = useAppSelector((state) => state.authReducer);
 
-  const { img, name, id } = phone;
+  const { count, totalPrice, setIsDeleted, id, 'phone.img': img, 'phone.name': name } = props;
 
   const splitedImg = img.split('/')[3];
   const phoneImg = `${constants.baseImgUrl}${splitedImg}`;
