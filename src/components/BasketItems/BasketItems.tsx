@@ -21,7 +21,7 @@ const BasketItems: FC = () => {
         setBasketItems(res.data);
 
         const allAmount = res.data.reduce((previousValue, currentValue) => {
-          return previousValue + currentValue.totalPrice * Number(currentValue.count);
+          return previousValue + currentValue.totalPrice;
         }, 0);
         setAllAmount(allAmount);
       });
