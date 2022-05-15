@@ -52,6 +52,9 @@ const Phone = () => {
               src={`${constants.baseImgUrl}${splittedImg}`}
               alt={phone?.name}
             />
+            <div className={css.price_wrap}>
+              <span className={css.description_header}>Ціна: <span className={css.clr_red}>{phone?.price.toString().replace(constants.numberWithCommas, ',')}</span></span>
+            </div>
             <div className={css.btn_wrap}>
               <button onClick={addItem} className={css.btn}>
                 Додати в корзину
