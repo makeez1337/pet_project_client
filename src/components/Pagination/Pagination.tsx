@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
-
-import css from './Pagination.module.css';
-import { phoneService } from '../../services';
 import { useSearchParams } from 'react-router-dom';
+
+import { phoneService } from '../../services';
+import css from './Pagination.module.css';
 
 interface PaginationProps {
   totalPages: null | number;
