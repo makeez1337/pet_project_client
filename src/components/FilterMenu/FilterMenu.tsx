@@ -3,8 +3,8 @@ import React, { FC } from 'react';
 import Brands from '../Brands/Brands';
 import MemoryMap from '../MemoryMap/MemoryMap';
 import RamMap from '../RamMap/RamMap';
-import css from './FilterMenu.module.css';
 import RangePriceSlider from '../RangePriceSlider/RangePriceSlider';
+import css from './FilterMenu.module.css';
 
 const FilterMenu: FC = () => {
   return (
