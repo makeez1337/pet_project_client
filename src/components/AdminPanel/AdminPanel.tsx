@@ -2,9 +2,10 @@ import React, { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import axios, { AxiosResponse } from 'axios';
 
-import css from './AdminPanel.module.css';
 import { phoneService } from '../../services';
 import { IPhone, IPhoneFormData } from '../../interfaces';
+import { generateFormDataForCreate } from '../../utils/generateFormData';
+import css from './AdminPanel.module.css';
 
 const AdminPanel: FC = () => {
   const { handleSubmit, register } = useForm<IPhoneFormData>();
@@ -12,17 +13,7 @@ const AdminPanel: FC = () => {
   const [err, setErr] = useState<null | { message: string }>(null);
 
   const onSubmit: SubmitHandler<IPhoneFormData> = (data) => {
-    const formData = new FormData();
-
-    formData.append('name', data.name);
-    formData.append('phoneImg', data.img[0]);
-    formData.append('description', data.description);
-    formData.append('price', data.price);
-    formData.append('processor', data.processor);
-    formData.append('camera', data.camera);
-    formData.append('brandId', data.brandId);
-    formData.append('memoryId', data.memoryId);
-    formData.append('ramId', data.ramId);
+    const formData = generateFormDataForCreate(data);
 
     phoneService
       .create(formData)
