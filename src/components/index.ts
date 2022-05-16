@@ -17,3 +17,4 @@ export * from './Ram/Ram';
 export * from './RangePriceSlider/RangePriceSlider';
 export * from './RegistrationPrompt/RegistrationPrompt';
 export * from './ServiceMenu/ServiceMenu';
+export * from './ModalUpdate/ModalUpdate';
