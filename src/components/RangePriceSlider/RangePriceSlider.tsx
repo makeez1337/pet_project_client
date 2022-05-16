@@ -1,17 +1,35 @@
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useSearchParams } from 'react-router-dom';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 
 import css from './Content.module.css';
 import './RangePriceSlider.css';
+import { phoneService } from '../../services';
 
 export default function RangePriceSlider() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const min = searchParams.get('gte') || 0;
-  const max = searchParams.get('lte') || 45999;
+
+  const [minPrice, setMinPrice] = useState<null | number>(null);
+  const [maxPrice, setMaxPrice] = useState<null | number>(null);
+
+  let min = Number(searchParams.get('gte')) || minPrice;
+  let max = Number(searchParams.get('lte')) || maxPrice;
 
   const [value, setValue] = useState<number[]>([Number(min), Number(max)]);
+
+  useEffect(() => {
+    phoneService.minAndMax().then((res) => {
+      setMinPrice(res.data[0].minPrice);
+      setMaxPrice(res.data[0].maxPrice);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (minPrice && maxPrice) {
+      setValue([minPrice, maxPrice]);
+    }
+  }, [maxPrice, minPrice]);
 
   const brandId = searchParams.get('brandId') || '';
   const memoryId = searchParams.get('memoryId') || '';
@@ -35,7 +53,8 @@ export default function RangePriceSlider() {
       <div className={css.filter_describe}>Ціна:</div>
       <Box sx={{ width: 300 }}>
         <Slider
-          max={45999}
+          min={minPrice as number}
+          max={maxPrice as number}
           value={value}
           onChangeCommitted={handleChangeCommitted}
           onChange={handleChange}
