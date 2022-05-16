@@ -19,5 +19,8 @@ export const phoneService = {
   },
   minAndMax: async (): Promise<AxiosResponse<IPhoneMinAndMax[]>> => {
     return axiosService.get(`${Urls.Phones}/minAndMax`);
+  },
+  updateById: (id: string, data: FormData) => {
+    return axiosService.patch(`${Urls.Phones}/${id}`, data);
   }
 };
