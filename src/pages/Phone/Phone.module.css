@@ -75,3 +75,12 @@
 .clr_red {
     color: red;
 }
+
+.upd_btn {
+    width: 30px;
+    height: 30px;
+}
+
+.upd_btn:hover {
+    cursor: pointer;
+}
