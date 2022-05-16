@@ -1,7 +1,8 @@
-import React, { FC, useEffect } from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import css from './Pagination.module.css';
 import { useSearchParams } from 'react-router-dom';
+import {phoneService} from "../../services";
 
 interface PaginationProps {
   totalPages: null | number;
@@ -11,8 +12,18 @@ interface PaginationProps {
 const Pagination: FC<PaginationProps> = ({ totalPages, perPage }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const gte = searchParams.get('gte') || '0';
-  const lte = searchParams.get('lte') || '45999';
+  const [minPrice, setMinPrice] = useState<null | number>(null);
+  const [maxPrice, setMaxPrice] = useState<null | number>(null);
+
+  useEffect(() => {
+    phoneService.minAndMax().then((res) => {
+      setMinPrice(res.data[0].minPrice);
+      setMaxPrice(res.data[0].maxPrice);
+    });
+  }, []);
+
+  const gte = searchParams.get('gte') || String(minPrice);
+  const lte = searchParams.get('lte') || String(maxPrice);
   const memoryId = searchParams.get('memoryId') || '';
   const ramId = searchParams.get('ramId') || '';
   const brandId = searchParams.get('brandId') || '';
