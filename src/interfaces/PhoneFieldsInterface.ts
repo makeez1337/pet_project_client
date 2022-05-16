@@ -19,6 +19,11 @@ export interface IPhoneJoin extends IPhone {
   memory: IMemory;
 }
 
+export interface IPhoneMinAndMax {
+  maxPrice: number;
+  minPrice: number;
+}
+
 export interface IPhoneGroupBy {
   'phone.id': number;
   'phone.name': string;
