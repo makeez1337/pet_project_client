@@ -1,25 +1,14 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { IMemory } from '../../interfaces';
-import { phoneService } from '../../services';
 import css from './Memory.module.css';
 
 const Memory: FC<IMemory> = ({ id, memory }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [minPrice, setMinPrice] = useState<null | number>(null);
-  const [maxPrice, setMaxPrice] = useState<null | number>(null);
-
-  useEffect(() => {
-    phoneService.minAndMax().then((res) => {
-      setMinPrice(res.data[0].minPrice);
-      setMaxPrice(res.data[0].maxPrice);
-    });
-  }, []);
-
-  const gte = searchParams.get('gte') || String(minPrice);
-  const lte = searchParams.get('lte') || String(maxPrice);
+  const gte = searchParams.get('gte') || '';
+  const lte = searchParams.get('lte') || '';
   const brandId = searchParams.get('brandId') || '';
   const ramId = searchParams.get('ramId') || '';
   const page = searchParams.get('page') || '1';
