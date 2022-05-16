@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IPhoneFormData } from '../../interfaces';
-import { generateFormDataForUpdate } from '../../utils/generateFormData';
+import { generateFormDataForUpdate } from '../../utils';
 import { phoneService } from '../../services';
 import css from './ModalUpdate.module.css';
 
@@ -23,9 +23,9 @@ const ModalUpdate: FC<ModalUpdateProps> = ({ setIsUpdated, setIsOpened, isOpened
     const formData = generateFormDataForUpdate(data);
 
     phoneService
-        .updateById(id as string, formData)
-        .then((res) => setIsUpdated(true))
-        .catch((e) => setIsUpdated(false));
+      .updateById(id as string, formData)
+      .then((res) => setIsUpdated(true))
+      .catch((e) => setIsUpdated(false));
   };
 
   return (
