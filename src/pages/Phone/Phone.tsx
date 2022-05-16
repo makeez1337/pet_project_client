@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { constants } from '../../constants';
@@ -7,12 +7,16 @@ import Auth from '../../components/Auth/Auth';
 import { IPhoneJoin } from '../../interfaces';
 import { basketDeviceService, phoneService } from '../../services';
 import { checkAuthThunk } from '../../store';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import ModalUpdate from '../../components/ModalUpdate/ModalUpdate';
+import update_btn from '../../images/update_btn.png';
 import css from './Phone.module.css';
 
-const Phone = () => {
+const Phone: FC = () => {
   const [phone, setPhone] = useState<null | IPhoneJoin>(null);
   const { id } = useParams();
+
+  const { user } = useAppSelector((state) => state.authReducer);
 
   const splittedImg = phone?.img.split('/')[3];
 
@@ -23,9 +27,13 @@ const Phone = () => {
     }
   }, []);
 
+  const [isUpdated, setIsUpdated] = useState<boolean>(false);
+
   useEffect(() => {
     phoneService.getById(Number(id)).then((res) => setPhone(res.data));
-  }, [id]);
+  }, [id, isUpdated]);
+
+  console.log(isUpdated);
 
   const addItem = async () => {
     const response = await basketDeviceService.createBasketDevice(Number(id)).catch((e) => {
@@ -37,6 +45,8 @@ const Phone = () => {
     }
   };
 
+  const [isOpened, setIsOpened] = useState<boolean>(false);
+
   return (
     <div>
       <Header />
@@ -47,6 +57,14 @@ const Phone = () => {
         </div>
         <div className={css.description_menu}>
           <div className={css.left_menu}>
+            {user?.role === 'admin' && (
+              <img
+                onClick={() => setIsOpened(true)}
+                className={css.upd_btn}
+                src={update_btn}
+                alt=""
+              />
+            )}
             {splittedImg && (
               <img
                 className={css.img}
@@ -98,6 +116,9 @@ const Phone = () => {
           </div>
         </div>
       </div>
+      {user?.role === 'admin' && (
+        <ModalUpdate isOpened={isOpened} setIsOpened={setIsOpened} setIsUpdated={setIsUpdated} />
+      )}
     </div>
   );
 };
