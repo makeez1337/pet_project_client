@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 
 import { phoneService } from '../../services';
 import { IPhone, IPhoneFormData } from '../../interfaces';
-import { generateFormDataForCreate } from '../../utils/generateFormData';
+import { generateFormDataForCreate } from '../../utils';
 import css from './AdminPanel.module.css';
 
 const AdminPanel: FC = () => {
