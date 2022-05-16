@@ -3,9 +3,9 @@ import Slider from '@mui/material/Slider';
 import { useSearchParams } from 'react-router-dom';
 import { SyntheticEvent, useEffect, useState } from 'react';
 
-import css from './Content.module.css';
-import './RangePriceSlider.css';
 import { phoneService } from '../../services';
+import './RangePriceSlider.css';
+import css from './Content.module.css';
 
 export default function RangePriceSlider() {
   const [searchParams, setSearchParams] = useSearchParams();
